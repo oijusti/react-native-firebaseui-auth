@@ -22,8 +22,8 @@ Easily add sign-in to your React Native app with FirebaseUI
 
 <div align="left">
 <p float="left">
-<img src="firebaseui-android.png" width="150"/>
-<img src="firebaseui-ios.png" width="150"/>
+<img src="https://raw.githubusercontent.com/oijusti/react-native-firebaseui-auth/HEAD/firebaseui-android.png" width="150"/>
+<img src="https://raw.githubusercontent.com/oijusti/react-native-firebaseui-auth/HEAD/firebaseui-ios.png" width="150"/>
 </p>
 </div>
 
