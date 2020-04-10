@@ -1,0 +1,58 @@
+
+ buildscript {
+     repositories {
+         google()
+         jcenter()
+     }
+
+     dependencies {
+         classpath 'com.android.tools.build:gradle:3.4.2'
+     }
+ }
+
+ allprojects {
+     repositories {
+         google()
+         mavenLocal()
+         jcenter()
+         maven {
+             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+             url "$rootDir/../node_modules/react-native/android"
+         }
+     }
+ }
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+repositories {
+    mavenCentral()
+    google()
+}
+
+dependencies {
+    implementation 'com.facebook.react:react-native:+'
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
+
+    // Required only if Facebook login support is required
+    // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
+    implementation 'com.facebook.android:facebook-android-sdk:4.+'
+
+    // Required only if Twitter login support is required
+    // Find the latest Twitter SDK releases here: https://goo.gl/E5wZvQ
+    // implementation 'com.twitter.sdk.android:twitter-core:3.+'
+}
+  

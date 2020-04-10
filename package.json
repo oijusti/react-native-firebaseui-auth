@@ -1,0 +1,38 @@
+
+{
+  "name": "react-native-firebaseui-auth",
+  "version": "1.1.10",
+  "description": "",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:oijusti/react-native-firebaseui-auth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oijusti/react-native-firebaseui-auth/issues/"
+  },
+  "homepage": "https://github.com/oijusti/react-native-firebaseui-auth",
+  "keywords": [
+    "android",
+    "ios",
+    "react-native",
+    "firebase",
+    "firebase auth",
+    "firebaseUI",
+    "firebaseUI auth",
+    "react-native-firebase",
+    "react native firebaseui"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": "",
+  "license": "",
+  "peerDependencies": {
+    "react-native": ">=0.44.0"
+  }
+}
