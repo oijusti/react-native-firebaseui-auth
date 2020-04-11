@@ -1,8 +1,8 @@
-
 {
   "name": "react-native-firebaseui-auth",
-  "version": "1.1.11",
-  "description": "",
+  "version": "1.1.12",
+  "description": "Easy login with FirebaseUi Auth",
+  "author": "Oscar Justi <oijusti@gmail.com>",
   "main": "index.js",
   "license": "MIT",
   "repository": {
@@ -24,15 +24,11 @@
     "react-native-firebase",
     "react native firebaseui"
   ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "react-native"
-  ],
-  "author": "",
-  "license": "",
   "peerDependencies": {
     "react-native": ">=0.44.0"
+  },
+  "private":false,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
