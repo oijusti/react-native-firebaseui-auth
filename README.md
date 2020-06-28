@@ -116,7 +116,7 @@ import firebaseui from 'react-native-firebaseui-auth';
 
 ## Example Project
 
-Create a project in the [Firebase Console](https://console.firebase.google.com) and add apps for Android and iOS
+Create a project in the [Firebase Console](https://console.firebase.google.com) and add apps for Android and iOS. Then enable Email/Password provider in Authentication.
 
 #### Android
 Make sure you type `com.example.app` in the `Android package name` field.
