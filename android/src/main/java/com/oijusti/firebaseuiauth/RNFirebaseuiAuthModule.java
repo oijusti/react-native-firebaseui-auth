@@ -66,6 +66,21 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
       else if (optProviders.getString(i).equals("phone")) {
         providers.add(new AuthUI.IdpConfig.PhoneBuilder().build());
       }
+      else if (optProviders.getString(i).equals("apple")) {
+        providers.add(new AuthUI.IdpConfig.AppleBuilder().build());
+      }
+      else if (optProviders.getString(i).equals("yahoo")) {
+        providers.add(new AuthUI.IdpConfig.YahooBuilder().build());
+      }
+      else if (optProviders.getString(i).equals("github")) {
+        providers.add(new AuthUI.IdpConfig.GitHubBuilder().build());
+      }
+      else if (optProviders.getString(i).equals("twitter")) {
+        providers.add(new AuthUI.IdpConfig.TwitterBuilder().build());
+      }
+      else if (optProviders.getString(i).equals("microsoft")) {
+        providers.add(new AuthUI.IdpConfig.MicrosoftBuilder().build());
+      }
     }
     currentActivity.startActivityForResult(
             AuthUI.getInstance()

@@ -45,7 +45,7 @@ repositories {
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
+    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
 
     // Required only if Facebook login support is required
     // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
@@ -53,6 +53,6 @@ dependencies {
 
     // Required only if Twitter login support is required
     // Find the latest Twitter SDK releases here: https://goo.gl/E5wZvQ
-    // implementation 'com.twitter.sdk.android:twitter-core:3.+'
+    implementation 'com.twitter.sdk.android:twitter-core:3.+'
 }
   
