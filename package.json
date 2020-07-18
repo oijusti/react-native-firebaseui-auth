@@ -1,6 +1,6 @@
 {
   "name": "react-native-firebaseui-auth",
-  "version": "1.1.15",
+  "version": "1.1.16",
   "description": "Easy login with FirebaseUi Auth",
   "author": "Oscar Justi <oijusti@gmail.com>",
   "main": "index.js",
@@ -22,7 +22,15 @@
     "firebaseUI",
     "firebaseUI auth",
     "react-native-firebase",
-    "react native firebaseui"
+    "react native firebaseui",
+    "sign in",
+    "facebook", 
+    "google", 
+    "apple", 
+    "yahoo", 
+    "github", 
+    "twitter", 
+    "microsoft"
   ],
   "peerDependencies": {
     "react-native": ">=0.59.0"
