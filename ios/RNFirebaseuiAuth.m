@@ -51,6 +51,9 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
         else if ([optProviders[i] isEqualToString:@"phone"]) {
             [providers addObject:[[FUIPhoneAuth alloc] initWithAuthUI:[FUIAuth defaultAuthUI]]];
         }
+        else if ([optProviders[i] isEqualToString:@"apple"]) {
+            [providers addObject:[FUIOAuth appleAuthProvider]];
+        }      
     }
 
     self.authUI.providers = providers;
