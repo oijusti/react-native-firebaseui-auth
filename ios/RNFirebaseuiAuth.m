@@ -52,8 +52,22 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
             [providers addObject:[[FUIPhoneAuth alloc] initWithAuthUI:[FUIAuth defaultAuthUI]]];
         }
         else if ([optProviders[i] isEqualToString:@"apple"]) {
-            [providers addObject:[FUIOAuth appleAuthProvider]];
-        }      
+            if (@available(iOS 13.0, *)) {
+                [providers addObject:[FUIOAuth appleAuthProvider]];
+            }
+        }
+        else if ([optProviders[i] isEqualToString:@"yahoo"]) {
+            [providers addObject:[FUIOAuth yahooAuthProvider]];
+        }
+        else if ([optProviders[i] isEqualToString:@"github"]) {
+            [providers addObject:[FUIOAuth githubAuthProvider]];
+        }
+        else if ([optProviders[i] isEqualToString:@"twitter"]) {
+            [providers addObject:[FUIOAuth twitterAuthProvider]];
+        }
+        else if ([optProviders[i] isEqualToString:@"microsoft"]) {
+            [providers addObject:[FUIOAuth microsoftAuthProvider]];
+        }
     }
 
     self.authUI.providers = providers;
