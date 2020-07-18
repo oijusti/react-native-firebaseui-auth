@@ -97,7 +97,7 @@ import firebaseui from 'react-native-firebaseui-auth';
 ...
 
   firebaseui.signIn({
-    providers: ['facebook', 'google', 'email', 'phone'],
+    providers: ['facebook', 'google', 'email', 'phone', 'apple', 'yahoo', 'github', 'twitter', 'microsoft'],
     tosUrl: 'https://example.com/tos.htm',
     privacyPolicyUrl: 'https://example.com/privacypolicy.htm',
   }).then(data => console.log(data));
