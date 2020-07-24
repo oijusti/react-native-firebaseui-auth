@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "jest-junit": "3.3.0",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-firebaseui-auth": "git+https://github.com/oijusti/react-native-firebaseui-auth.git"
@@ -25,6 +26,7 @@
     "react-test-renderer": "16.11.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "testResultsProcessor": "jest-junit"
   }
 }
