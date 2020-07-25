@@ -54,6 +54,10 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     final List<AuthUI.IdpConfig> providers = new ArrayList<>();
     for (int i = 0; i < optProviders.size(); i++)
     {
+      if (optProviders.getString(i).equals("anonymous")) {
+        providers.add(new AuthUI.IdpConfig.AnonymousBuilder().build());
+        break;
+      }
       if (optProviders.getString(i).equals("facebook")) {
         providers.add(new AuthUI.IdpConfig.FacebookBuilder().build());
       }
