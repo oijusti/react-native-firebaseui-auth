@@ -1,3 +1,4 @@
+
 [![oijusti](https://circleci.com/gh/oijusti/react-native-firebaseui-auth.svg?style=svg)](https://circleci.com/gh/oijusti/react-native-firebaseui-auth)
 
 [prs]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
@@ -127,15 +128,17 @@ import firebaseui from 'react-native-firebaseui-auth';
 
 ### Returns: `user`
 
-Field | Type |
- --- | --- |
- uid |`string`|
- displayName |`string`|
- photoURL |`string`|
- email |`string`|
- phoneNumber |`string`|
- providerId |`string`|
- isNewUser |`bool`|
+Field | Type | Description |
+--- | --- | --- |
+uid |`string`| The provider's user ID for the user. |
+displayName |`string`| The name of the user. |
+photoURL |`string`| The URL of the user's profile photo. |
+email |`string`| Indicates the email address associated with this user ~~has been verified~~. |
+phoneNumber |`string`| A phone number associated with the user. |
+providerId |`string`| The provider identifier. |
+isNewUser |`boolean`| Indicates whether or not the current user was signed in for the first time. |
+creationDate |`int`| Stores the creation date for the corresponding Firebase user. The interval between the date object and 00:00:00 UTC on 1 January 1970. |
+lastSignInDate |`int`| Stores the last sign in date for the corresponding Firebase user. The interval between the date object and 00:00:00 UTC on 1 January 1970. |
 
 ## Example Project
 
