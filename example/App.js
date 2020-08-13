@@ -46,21 +46,21 @@ const App: () => React$Node = () => {
                     providers: ['email'],
                     tosUrl: 'https://example.com/tos.htm',
                     privacyPolicyUrl: 'https://example.com/privacypolicy.htm',
-                  }).then(data => console.log(data));
+                  }).then(user => console.log(user));
                 }}
                 title="SignIn"
               />
               <Text> / </Text>
               <Button
                 onPress={() => {
-                  firebaseui.signOut().then(data => console.log(data));
+                  firebaseui.signOut().then(resp => console.log(resp));
                 }}
                 title="SignOut"
               />
               <Text> / </Text>
               <Button
                 onPress={() => {
-                  firebaseui.getCurrentUser().then(data => console.log(data));
+                  firebaseui.getCurrentUser().then(user => console.log(user));
                 }}
                 title="CurrentUser"
               />

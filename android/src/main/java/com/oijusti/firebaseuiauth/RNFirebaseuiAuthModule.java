@@ -1,4 +1,3 @@
-
 package com.oijusti.firebaseuiauth;
 
 import android.app.Activity;
@@ -18,6 +17,7 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +32,7 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
   private final ReactApplicationContext reactContext;
   private static int RC_SIGN_IN = 100;
   private Promise signInPromise;
+  private boolean isNewUser = false;
 
   public RNFirebaseuiAuthModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -49,9 +50,11 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     signInPromise = promise;
     Activity currentActivity = getCurrentActivity();
     ReadableArray optProviders = config.getArray("providers");
+
     final String tosUrl = config.hasKey("tosUrl") ? config.getString("tosUrl") : null;
     final String privacyPolicyUrl = config.hasKey("privacyPolicyUrl") ? config.getString("privacyPolicyUrl") : null;
     final List<AuthUI.IdpConfig> providers = new ArrayList<>();
+
     for (int i = 0; i < optProviders.size(); i++)
     {
       if (optProviders.getString(i).equals("anonymous")) {
@@ -130,7 +133,11 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent intent) {
       if (requestCode == RC_SIGN_IN) {
+        IdpResponse response = IdpResponse.fromResultIntent(intent);
+
         if (resultCode == RESULT_OK) {
+          isNewUser = response.isNewUser();
+
           FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
           signInPromise.resolve(mapUser(user));
         } else {
@@ -154,6 +161,8 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     resultData.putString("photoURL", user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : null);
     resultData.putString("email", user.getEmail());
     resultData.putString("phoneNumber", user.getPhoneNumber());
+    resultData.putString("providerId", user.getProviderId());
+    resultData.putBoolean("isNewUser", isNewUser);
     return resultData;
   }
 }
