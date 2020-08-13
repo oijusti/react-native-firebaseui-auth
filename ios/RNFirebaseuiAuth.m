@@ -1,8 +1,8 @@
-
 #import "RNFirebaseuiAuth.h"
 
 @interface RNFirebaseuiAuth ()
 @property (nonatomic, retain) FUIAuth *authUI;
+@property (nonatomic, assign) BOOL isNewUser;
 @property (nonatomic) RCTPromiseResolveBlock _resolve;
 @property (nonatomic) RCTPromiseRejectBlock _reject;
 @end
@@ -106,12 +106,14 @@ RCT_EXPORT_METHOD(getCurrentUser:(RCTPromiseResolveBlock)resolve
     resolve(user);
 }
 
-- (void)authUI:(FUIAuth *)authUI didSignInWithUser:(nullable FIRUser *)user error:(nullable NSError *)error {
+- (void)authUI:(FUIAuth *)authUI didSignInWithAuthDataResult:(nullable FIRAuthDataResult *)authDataResult error:(nullable NSError *)error{
+    FIRUser *user = authDataResult.user;
     if (error) {
         self._reject(@"101", @"Sign in error", error);
         return;
     }
     if (user) {
+        self.isNewUser = authDataResult.additionalUserInfo.isNewUser;
         NSDictionary *authResultDict = [self mapUser:user];
         self._resolve(authResultDict);
         return;
@@ -126,9 +128,8 @@ RCT_EXPORT_METHOD(getCurrentUser:(RCTPromiseResolveBlock)resolve
         @"photoURL": user.photoURL ?: [NSNull null],
         @"email": user.email ?: [NSNull null],
         @"phoneNumber": user.phoneNumber ?: [NSNull null],
+        @"isNewUser": self.isNewUser ? @"true" : @"false",
     };
 }
 
 @end
-
-
