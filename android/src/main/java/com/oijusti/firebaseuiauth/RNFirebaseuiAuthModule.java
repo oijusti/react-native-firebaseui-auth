@@ -161,7 +161,8 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     resultData.putString("photoURL", user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : null);
     resultData.putString("email", user.getEmail());
     resultData.putString("phoneNumber", user.getPhoneNumber());
-    resultData.putString("isNewUser", isNewUser+"");
+    resultData.putString("providerId", user.getProviderId());
+    resultData.putBoolean("isNewUser", isNewUser);
     return resultData;
   }
 }
