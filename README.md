@@ -112,19 +112,30 @@ import firebaseui from 'react-native-firebaseui-auth';
     ],
     tosUrl: 'https://example.com/tos.htm',
     privacyPolicyUrl: 'https://example.com/privacypolicy.htm',
-  }).then(data => console.log(data));
+  }).then(user => console.log(user));
 
 ...
 
-  firebaseui.signOut().then(data => console.log(data));
+  firebaseui.signOut().then(resp => console.log(resp));
 
 ...
 
-  firebaseui.getCurrentUser().then(data => console.log(data));
+  firebaseui.getCurrentUser().then(user => console.log(user));
 
 ...
 ```
 
+### Returns: `user`
+
+Field | Type |
+ --- | --- |
+ uid |`string`|
+ displayName |`string`|
+ photoURL |`string`|
+ email |`string`|
+ phoneNumber |`string`|
+ providerId |`string`|
+ isNewUser |`bool`|
 
 ## Example Project
 
