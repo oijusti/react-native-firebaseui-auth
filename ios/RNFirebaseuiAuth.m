@@ -129,7 +129,7 @@ RCT_EXPORT_METHOD(getCurrentUser:(RCTPromiseResolveBlock)resolve
         @"email": user.email ?: [NSNull null],
         @"phoneNumber": user.phoneNumber ?: [NSNull null],
         @"providerID": user.providerID ?: [NSNull null],
-        @"isNewUser": self.isNewUser ? @"true" : @"false",
+        @"isNewUser": @(self.isNewUser),
     };
 }
 
