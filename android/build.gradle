@@ -49,7 +49,7 @@ dependencies {
 
     // Required only if Facebook login support is required
     // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
-    implementation 'com.facebook.android:facebook-android-sdk:4.+'
+    implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
 
     // Required only if Twitter login support is required
     // Find the latest Twitter SDK releases here: https://goo.gl/E5wZvQ
