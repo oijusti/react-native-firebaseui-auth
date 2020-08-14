@@ -2,7 +2,7 @@
 
 @interface RNFirebaseuiAuth ()
 @property (nonatomic, retain) FUIAuth *authUI;
-@property (nonatomic, assign) BOOL isNewUser;
+@property (nonatomic, retain) FIRAdditionalUserInfo *additionalUserInfo;
 @property (nonatomic) RCTPromiseResolveBlock _resolve;
 @property (nonatomic) RCTPromiseRejectBlock _reject;
 @end
@@ -113,7 +113,7 @@ RCT_EXPORT_METHOD(getCurrentUser:(RCTPromiseResolveBlock)resolve
         return;
     }
     if (user) {
-        self.isNewUser = authDataResult.additionalUserInfo.isNewUser;
+        self.additionalUserInfo = authDataResult.additionalUserInfo;
         NSDictionary *authResultDict = [self mapUser:user];
         self._resolve(authResultDict);
         return;
@@ -129,7 +129,12 @@ RCT_EXPORT_METHOD(getCurrentUser:(RCTPromiseResolveBlock)resolve
         @"email": user.email ?: [NSNull null],
         @"phoneNumber": user.phoneNumber ?: [NSNull null],
         @"providerID": user.providerID ?: [NSNull null],
-        @"isNewUser": @(self.isNewUser),
+        @"isNewUser": self.additionalUserInfo?
+            @(self.additionalUserInfo.isNewUser) : [NSNull null],
+        @"creationTimestamp": user.metadata ?
+            @(user.metadata.creationDate.timeIntervalSince1970 * 1000) : [NSNull null],
+        @"lastSignInTimestamp": user.metadata ?
+            @(user.metadata.lastSignInDate.timeIntervalSince1970 * 1000) : [NSNull null],
     };
 }
 
