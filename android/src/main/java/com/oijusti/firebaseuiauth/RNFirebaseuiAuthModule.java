@@ -163,6 +163,8 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     resultData.putString("phoneNumber", user.getPhoneNumber());
     resultData.putString("providerId", user.getProviderId());
     resultData.putBoolean("isNewUser", isNewUser);
+    resultData.putDouble("creationTimestamp", user.getMetadata().getCreationTimestamp());
+    resultData.putDouble("lastSignInTimestamp", user.getMetadata().getLastSignInTimestamp());
     return resultData;
   }
 }

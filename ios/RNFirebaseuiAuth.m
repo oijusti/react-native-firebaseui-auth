@@ -131,9 +131,9 @@ RCT_EXPORT_METHOD(getCurrentUser:(RCTPromiseResolveBlock)resolve
         @"providerID": user.providerID ?: [NSNull null],
         @"isNewUser": self.additionalUserInfo?
             @(self.additionalUserInfo.isNewUser) : [NSNull null],
-        @"creationDate": user.metadata ?
+        @"creationTimestamp": user.metadata ?
             @(user.metadata.creationDate.timeIntervalSince1970 * 1000) : [NSNull null],
-        @"lastSignInDate": user.metadata ?
+        @"lastSignInTimestamp": user.metadata ?
             @(user.metadata.lastSignInDate.timeIntervalSince1970 * 1000) : [NSNull null],
     };
 }

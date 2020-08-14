@@ -137,8 +137,8 @@ email |`string`| Indicates the email address associated with this user ~~has bee
 phoneNumber |`string`| A phone number associated with the user. |
 providerId |`string`| The provider identifier. |
 isNewUser |`boolean`| Indicates whether or not the current user was signed in for the first time. |
-creationDate |`int`| Stores the creation date for the corresponding Firebase user. The interval between the date object and 00:00:00 UTC on 1 January 1970. |
-lastSignInDate |`int`| Stores the last sign in date for the corresponding Firebase user. The interval between the date object and 00:00:00 UTC on 1 January 1970. |
+creationTimestamp |`int`| Stores the timestamp at which this account was created as dictated by the server clock in milliseconds since epoch. |
+lastSignInTimestamp |`int`| Stores the last signin timestamp as dictated by the server clock in milliseconds since epoch. |
 
 ## Example Project
 
