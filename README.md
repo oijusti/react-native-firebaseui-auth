@@ -95,11 +95,11 @@ RN <= 0.59 only
 ## Usage
 
 ```javascript
-import firebaseui from 'react-native-firebaseui-auth';
+import Auth from 'react-native-firebaseui-auth';
 
 ...
 
-  firebaseui.signIn({
+  const config = {
     providers: [
       'facebook', 
       'google', 
@@ -113,15 +113,17 @@ import firebaseui from 'react-native-firebaseui-auth';
     ],
     tosUrl: 'https://example.com/tos.htm',
     privacyPolicyUrl: 'https://example.com/privacypolicy.htm',
-  }).then(user => console.log(user));
+  };
+
+  Auth.signIn(config).then(user => console.log(user));
 
 ...
 
-  firebaseui.signOut().then(resp => console.log(resp));
+  Auth.signOut().then(resp => console.log(resp));
 
 ...
 
-  firebaseui.getCurrentUser().then(user => console.log(user));
+  Auth.getCurrentUser().then(user => console.log(user));
 
 ...
 ```

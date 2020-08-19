@@ -25,7 +25,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import firebaseui from 'react-native-firebaseui-auth';
+import Auth from 'react-native-firebaseui-auth';
 
 const App: () => React$Node = () => {
   return (
@@ -42,25 +42,26 @@ const App: () => React$Node = () => {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Button
                 onPress={() => {
-                  firebaseui.signIn({
+                  const config = {
                     providers: ['email'],
                     tosUrl: 'https://example.com/tos.htm',
                     privacyPolicyUrl: 'https://example.com/privacypolicy.htm',
-                  }).then(user => console.log(user));
+                  };
+                  Auth.signIn(config).then(user => console.log(user));
                 }}
                 title="SignIn"
               />
               <Text> / </Text>
               <Button
                 onPress={() => {
-                  firebaseui.signOut().then(resp => console.log(resp));
+                  Auth.signOut().then(resp => console.log(resp));
                 }}
                 title="SignOut"
               />
               <Text> / </Text>
               <Button
                 onPress={() => {
-                  firebaseui.getCurrentUser().then(user => console.log(user));
+                  Auth.getCurrentUser().then(user => console.log(user));
                 }}
                 title="CurrentUser"
               />

@@ -1,19 +1,6 @@
 export = RNFirebaseuiAuth;
 
 declare namespace RNFirebaseuiAuth {
-  // TODO: Enum Alternative
-  // export enum Providers {
-  //   Facebook = 'facebook',
-  //   Google = 'google',
-  //   Email = 'email',
-  //   Phone = 'phone',
-  //   Apple = 'apple',
-  //   Yahoo = 'yahoo',
-  //   Github = 'github',
-  //   Twitter = 'twitter',
-  //   Microsoft = 'microsoft',
-  // }
-
   type User = {
     uid: string;
     displayName: string;
