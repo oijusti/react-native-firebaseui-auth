@@ -115,7 +115,9 @@ import Auth from 'react-native-firebaseui-auth';
     privacyPolicyUrl: 'https://example.com/privacypolicy.htm',
   };
 
-  Auth.signIn(config).then(user => console.log(user));
+  Auth.signIn(config)
+    .then(user => console.log(user))
+    .catch(err => console.log(err));
 
 ...
 
