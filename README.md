@@ -141,8 +141,8 @@ email |`string`| Indicates the email address associated with this user ~~has bee
 phoneNumber |`string`| A phone number associated with the user. |
 providerId |`string`| The provider identifier. |
 isNewUser |`boolean`| Indicates whether or not the current user was signed in for the first time. |
-creationTimestamp |`int`| Stores the timestamp at which this account was created as dictated by the server clock in milliseconds since epoch. |
-lastSignInTimestamp |`int`| Stores the last signin timestamp as dictated by the server clock in milliseconds since epoch. |
+creationTimestamp |`number`| Stores the timestamp at which this account was created as dictated by the server clock in milliseconds since epoch. |
+lastSignInTimestamp |`number`| Stores the last signin timestamp as dictated by the server clock in milliseconds since epoch. |
 
 ## Example Project
 
