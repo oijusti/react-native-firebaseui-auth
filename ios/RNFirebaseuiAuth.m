@@ -9,6 +9,16 @@
 
 @implementation RNFirebaseuiAuth
 
+/** @const ERROR_USER_CANCELLED
+ @brief Indicates the user cancelled a sign-in flow.
+ */
+NSString* const ERROR_USER_CANCELLED = @"ERROR_USER_CANCELLED";
+
+/** @const ERROR_FIREBASE
+ @brief Indicates firebase encountered an error.
+ */
+NSString* const ERROR_FIREBASE = @"ERROR_FIREBASE";
+
 - (dispatch_queue_t)methodQueue
 {
     return dispatch_get_main_queue();
@@ -88,10 +98,10 @@ RCT_EXPORT_METHOD(signOut:(RCTPromiseResolveBlock)resolve
     NSError *error;
     [self.authUI signOutWithError:&error];
     if (error) {
-        reject(@"102", @"Sign out error", error);
+        reject(ERROR_FIREBASE, @"Sign out error", error);
         return;
     }
-    resolve(@{@"success": @(true)});
+    resolve(@YES);
 }
 
 RCT_EXPORT_METHOD(getCurrentUser:(RCTPromiseResolveBlock)resolve
@@ -103,22 +113,29 @@ RCT_EXPORT_METHOD(getCurrentUser:(RCTPromiseResolveBlock)resolve
         resolve(authResultDict);
         return;
     }
-    resolve(user);
+    resolve([NSNull null]);
 }
 
-- (void)authUI:(FUIAuth *)authUI didSignInWithAuthDataResult:(nullable FIRAuthDataResult *)authDataResult error:(nullable NSError *)error{
-    FIRUser *user = authDataResult.user;
+- (void)authUI:(FUIAuth *)authUI
+didSignInWithAuthDataResult:(nullable FIRAuthDataResult *)authDataResult
+         error:(nullable NSError *)error{
+    
     if (error) {
-        self._reject(@"101", @"Sign in error", error);
+        if (error.code == FUIAuthErrorCodeUserCancelledSignIn) {
+            self._reject(ERROR_USER_CANCELLED, @"User cancelled the sign-in process", error);
+        } else {
+            self._reject(ERROR_FIREBASE, error.localizedDescription, error);
+        }
         return;
     }
+    
+    FIRUser *user = authDataResult.user;
     if (user) {
         self.additionalUserInfo = authDataResult.additionalUserInfo;
         NSDictionary *authResultDict = [self mapUser:user];
         self._resolve(authResultDict);
         return;
     }
-    self._resolve(@{@"success": @(false)});
 }
 
 - (NSDictionary*)mapUser:(nullable FIRUser*)user {
@@ -130,11 +147,11 @@ RCT_EXPORT_METHOD(getCurrentUser:(RCTPromiseResolveBlock)resolve
         @"phoneNumber": user.phoneNumber ?: [NSNull null],
         @"providerID": user.providerID ?: [NSNull null],
         @"isNewUser": self.additionalUserInfo?
-            @(self.additionalUserInfo.isNewUser) : [NSNull null],
+        @(self.additionalUserInfo.isNewUser) : [NSNull null],
         @"creationTimestamp": user.metadata ?
-            @(user.metadata.creationDate.timeIntervalSince1970 * 1000) : [NSNull null],
+        @(user.metadata.creationDate.timeIntervalSince1970 * 1000) : [NSNull null],
         @"lastSignInTimestamp": user.metadata ?
-            @(user.metadata.lastSignInDate.timeIntervalSince1970 * 1000) : [NSNull null],
+        @(user.metadata.lastSignInDate.timeIntervalSince1970 * 1000) : [NSNull null],
     };
 }
 

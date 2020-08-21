@@ -34,6 +34,17 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
   private Promise signInPromise;
   private boolean isNewUser = false;
 
+  /**
+   * Indicates the user cancelled a sign-in flow.
+   */
+  private final String ERROR_USER_CANCELLED = "ERROR_USER_CANCELLED";
+
+  /**
+   * Indicates firebase encountered an error.
+   */
+  private final String ERROR_FIREBASE = "ERROR_FIREBASE";
+
+
   public RNFirebaseuiAuthModule(ReactApplicationContext reactContext) {
     super(reactContext);
     this.reactContext = reactContext;
@@ -107,14 +118,7 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
             .signOut(context)
             .addOnCompleteListener(new OnCompleteListener<Void>() {
               public void onComplete(@NonNull Task<Void> task) {
-                try {
-                  WritableMap resultData = new WritableNativeMap();
-                  resultData.putString("success", "true");
-                  promise.resolve(resultData);
-                } catch (Exception e) {
-                  e.printStackTrace();
-                  promise.reject("102", e.getMessage());
-                }
+                promise.resolve(true);
               }
             });
   }
@@ -124,9 +128,9 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     if (user != null) {
       promise.resolve(mapUser(user));
-    } else {
-      promise.resolve(user);
+      return;
     }
+    promise.resolve(null);
   }
 
   private final ActivityEventListener mActivityEventListener = new BaseActivityEventListener() {
@@ -134,21 +138,16 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent intent) {
       if (requestCode == RC_SIGN_IN) {
         IdpResponse response = IdpResponse.fromResultIntent(intent);
-
+        if (response == null) {
+          signInPromise.reject(ERROR_USER_CANCELLED, "User cancelled the sign-in process");
+          return;
+        }
         if (resultCode == RESULT_OK) {
           isNewUser = response.isNewUser();
-
           FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
           signInPromise.resolve(mapUser(user));
         } else {
-          try {
-            WritableMap resultData = new WritableNativeMap();
-            resultData.putString("success", "false");
-            signInPromise.resolve(resultData);
-          } catch (Exception e) {
-            e.printStackTrace();
-            signInPromise.reject("101", e.getMessage());
-          }
+          signInPromise.reject(ERROR_FIREBASE, response.getError().getMessage(), response.getError());
         }
       }
     }
