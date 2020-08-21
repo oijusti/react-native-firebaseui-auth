@@ -35,11 +35,12 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
   private boolean isNewUser = false;
 
   /**
-   * Indicates that user cancelled the sign-in process.
+   * Indicates the user cancelled a sign-in flow.
    */
   private final String ERROR_USER_CANCELLED = "ERROR_USER_CANCELLED";
+
   /**
-   * Indicates that firebase encountered an error.
+   * Indicates firebase encountered an error.
    */
   private final String ERROR_FIREBASE = "ERROR_FIREBASE";
 
@@ -137,15 +138,15 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent intent) {
       if (requestCode == RC_SIGN_IN) {
         IdpResponse response = IdpResponse.fromResultIntent(intent);
-
+        if (response == null) {
+          signInPromise.reject(ERROR_USER_CANCELLED, "User cancelled the sign-in process");
+          return;
+        }
         if (resultCode == RESULT_OK) {
           isNewUser = response.isNewUser();
           FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
           signInPromise.resolve(mapUser(user));
-        } else if (response == null) {
-          signInPromise.reject(ERROR_USER_CANCELLED, "User cancelled the sign-in process");
-        }
-        else {
+        } else {
           signInPromise.reject(ERROR_FIREBASE, response.getError().getMessage(), response.getError());
         }
       }
