@@ -116,7 +116,10 @@ RCT_EXPORT_METHOD(getCurrentUser:(RCTPromiseResolveBlock)resolve
     resolve([NSNull null]);
 }
 
-- (void)authUI:(FUIAuth *)authUI didSignInWithAuthDataResult:(nullable FIRAuthDataResult *)authDataResult error:(nullable NSError *)error{
+- (void)authUI:(FUIAuth *)authUI
+didSignInWithAuthDataResult:(nullable FIRAuthDataResult *)authDataResult
+         error:(nullable NSError *)error{
+    
     if (error) {
         if (error.code == FUIAuthErrorCodeUserCancelledSignIn) {
             self._reject(ERROR_USER_CANCELLED, @"User cancelled the sign-in process", error);
