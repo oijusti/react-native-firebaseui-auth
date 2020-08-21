@@ -20,6 +20,6 @@ declare namespace RNFirebaseuiAuth {
   }
 
   export function signIn(config: Config): Promise<User>;
-  export function signOut(): Promise<{}>;
-  export function getCurrentUser(): Promise<User>;
+  export function signOut(): Promise<boolean>;
+  export function getCurrentUser(): Promise<User|null>;
 }
