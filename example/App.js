@@ -56,7 +56,7 @@ const App: () => React$Node = () => {
               <Text> / </Text>
               <Button
                 onPress={() => {
-                  Auth.signOut().then(resp => console.log(resp));
+                  Auth.signOut().then(res => console.log(res));
                 }}
                 title="SignOut"
               />

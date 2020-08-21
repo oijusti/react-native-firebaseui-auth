@@ -121,7 +121,7 @@ import Auth from 'react-native-firebaseui-auth';
 
 ...
 
-  Auth.signOut().then(resp => console.log(resp));
+  Auth.signOut().then(res => console.log(res));
 
 ...
 
