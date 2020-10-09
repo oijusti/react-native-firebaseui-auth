@@ -7,7 +7,6 @@ before_script:
 xcode_workspace: example.xcworkspace
   - npm install
 xcode_scheme: example
-script: npm --version
 xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
 podfile: Podfile
 cache:
@@ -23,5 +22,4 @@ before_install:
   - cd ./ios/example
   - mv ./gs ./GoogleService-Info.plist
   - cd ..
-script:
-  - xcodebuild -workspace example.xcworkspace -scheme "example" -destination "platform=iOS Simulator,OS=11.3,name=iPhone X" clean | xcpretty
+script: xcodebuild -workspace example.xcworkspace -scheme "example" -destination "platform=iOS Simulator,OS=11.3,name=iPhone X" clean | xcpretty
