@@ -1,6 +1,21 @@
-language: node_js
-node_js:
-  - "8"
-before_script:
-  - npm install
-script: npm --version
+os: osx
+osx_image: xcode12
+language: objective-c
+# xcode_workspace: example.xcworkspace
+# xcode_scheme: example
+# xcode_destination: "platform=iOS Simulator,OS=14.0,name=iPhone 11"
+podfile: Podfile
+cache:
+  bundler: true
+  cocoapods: true
+  directories:
+    - example/node_modules
+    - example/ios/Pods
+before_install:
+  - brew install yarn
+  - cd ./example
+  - yarn
+  - cd ./ios/example
+  - mv ./gs ./GoogleService-Info.plist
+  - cd ..
+script: set -o pipefail && xcodebuild -workspace example.xcworkspace -scheme example -destination "platform=iOS Simulator,OS=14.0,name=iPhone 11" -configuration Debug | xcpretty
