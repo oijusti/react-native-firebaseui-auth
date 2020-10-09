@@ -1,11 +1,7 @@
 os: osx
-node_js:
 osx_image: xcode11.3
-  - "8"
 language: objective-c
-before_script:
 xcode_workspace: example.xcworkspace
-  - npm install
 xcode_scheme: example
 xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
 podfile: Podfile
