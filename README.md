@@ -123,11 +123,15 @@ import Auth from 'react-native-firebaseui-auth';
 
 ...
 
+  Auth.getCurrentUser().then(user => console.log(user));
+
+...
+
   Auth.signOut().then(res => console.log(res));
 
 ...
 
-  Auth.getCurrentUser().then(user => console.log(user));
+  Auth.delete().then(res => console.log(res));
 
 ...
 ```

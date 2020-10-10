@@ -56,6 +56,13 @@ const App: () => React$Node = () => {
               <Text> / </Text>
               <Button
                 onPress={() => {
+                  Auth.getCurrentUser().then(user => console.log(user));
+                }}
+                title="CurrentUser"
+              />
+              <Text> / </Text>
+              <Button
+                onPress={() => {
                   Auth.signOut().then(res => console.log(res));
                 }}
                 title="SignOut"
@@ -63,9 +70,9 @@ const App: () => React$Node = () => {
               <Text> / </Text>
               <Button
                 onPress={() => {
-                  Auth.getCurrentUser().then(user => console.log(user));
+                  Auth.delete().then(res => console.log(res));
                 }}
-                title="CurrentUser"
+                title="Delete"
               />
             </View>
             <Text>Check console log</Text>
