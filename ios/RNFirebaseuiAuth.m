@@ -46,7 +46,7 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
 {
     NSMutableArray<id<FUIAuthProvider>> *providers = [[NSMutableArray alloc] init];
     NSArray<NSString *> *optProviders = [options objectForKey:@"providers"];
-
+    
     for (int i = 0; i < [optProviders count]; i++)
     {
         if ([optProviders[i] isEqualToString:@"facebook"]) {
@@ -79,17 +79,29 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
             [providers addObject:[FUIOAuth microsoftAuthProvider]];
         }
     }
-
+    
     self.authUI.providers = providers;
     self.authUI.TOSURL = [NSURL URLWithString:options[@"tosUrl"]];
     self.authUI.privacyPolicyURL = [NSURL URLWithString:options[@"privacyPolicyUrl"]];
-
+    
     UINavigationController *authViewController = [self.authUI authViewController];
     UIViewController *rootVC = UIApplication.sharedApplication.delegate.window.rootViewController;
     [rootVC presentViewController:authViewController animated:YES completion:nil];
-
+    
     self._resolve = resolve;
     self._reject = reject;
+}
+
+RCT_EXPORT_METHOD(getCurrentUser:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
+    FIRUser *user = self.authUI.auth.currentUser;
+    if (user) {
+        NSDictionary *authResultDict = [self mapUser:user];
+        resolve(authResultDict);
+        return;
+    }
+    resolve([NSNull null]);
 }
 
 RCT_EXPORT_METHOD(signOut:(RCTPromiseResolveBlock)resolve
@@ -104,16 +116,17 @@ RCT_EXPORT_METHOD(signOut:(RCTPromiseResolveBlock)resolve
     resolve(@YES);
 }
 
-RCT_EXPORT_METHOD(getCurrentUser:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(delete:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
     FIRUser *user = self.authUI.auth.currentUser;
-    if (user) {
-        NSDictionary *authResultDict = [self mapUser:user];
-        resolve(authResultDict);
-        return;
-    }
-    resolve([NSNull null]);
+    [user deleteWithCompletion:^(NSError *_Nullable error) {
+        if (error) {
+            reject(ERROR_FIREBASE, @"Delete user error", error);
+            return;
+        }
+        resolve(@YES);
+    }];
 }
 
 - (void)authUI:(FUIAuth *)authUI

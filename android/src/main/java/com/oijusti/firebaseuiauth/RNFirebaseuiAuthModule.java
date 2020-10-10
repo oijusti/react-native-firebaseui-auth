@@ -112,6 +112,16 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
+  public void getCurrentUser(final Promise promise) {
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    if (user != null) {
+      promise.resolve(mapUser(user));
+      return;
+    }
+    promise.resolve(null);
+  }
+
+  @ReactMethod
   public void signOut(final Promise promise) {
     Context context = getReactApplicationContext();
     AuthUI.getInstance()
@@ -120,17 +130,31 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
               public void onComplete(@NonNull Task<Void> task) {
                 promise.resolve(true);
               }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+              @Override
+              public void onFailure(@NonNull Exception e) {
+                promise.reject(ERROR_FIREBASE, e.getMessage(), e);
+              }
             });
   }
 
   @ReactMethod
-  public void getCurrentUser(final Promise promise) {
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    if (user != null) {
-      promise.resolve(mapUser(user));
-      return;
-    }
-    promise.resolve(null);
+  public void delete(final Promise promise) {
+    Context context = getReactApplicationContext();
+    AuthUI.getInstance()
+            .delete(context)
+            .addOnCompleteListener(new OnCompleteListener<Void>() {
+              public void onComplete(@NonNull Task<Void> task) {
+                promise.resolve(true);
+              }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+              @Override
+              public void onFailure(@NonNull Exception e) {
+                promise.reject(ERROR_FIREBASE, e.getMessage(), e);
+              }
+            });
   }
 
   private final ActivityEventListener mActivityEventListener = new BaseActivityEventListener() {
