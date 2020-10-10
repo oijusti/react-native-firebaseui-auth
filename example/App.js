@@ -39,7 +39,7 @@ const App: () => React$Node = () => {
 
           <View style={{alignItems: 'center'}}>
             <Text style={{fontWeight: 'bold', fontSize: 24}}>Firebase UI Auth Example</Text>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View style={{flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center', padding: 5}}>
               <Button
                 onPress={() => {
                   const config = {
@@ -67,7 +67,8 @@ const App: () => React$Node = () => {
                 }}
                 title="SignOut"
               />
-              <Text> / </Text>
+            </View>
+            <View style={{flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center', padding: 5}}>
               <Button
                 onPress={() => {
                   Auth.delete().then(res => console.log(res));
