@@ -11,6 +11,7 @@
 #import <FirebaseUI/FirebaseEmailAuthUI.h>
 #import <FirebaseUI/FirebaseOAuthUI.h>
 #import <FirebaseUI/FirebasePhoneAuthUI.h>
+#import <FirebaseUI/FirebaseAnonymousAuthUI.h>
 
 @interface RNFirebaseuiAuth : NSObject <RCTBridgeModule, FUIAuthDelegate>
 
