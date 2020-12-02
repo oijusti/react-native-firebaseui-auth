@@ -181,6 +181,8 @@ Become a sponsor to support the further development of this and other libraries.
 <a href="https://oiradio.co" target="_blank"><img src="https://oiradio.co/assets/images/stations/i/i0.png"></a>
 </div>
 
+Or give me a star ✭ if you like it!
+
 ## License
 
 (MIT)
