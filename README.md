@@ -103,6 +103,7 @@ import Auth from 'react-native-firebaseui-auth';
 
   const config = {
     providers: [
+      'anonymous',
       'facebook', 
       'google', 
       'email', 

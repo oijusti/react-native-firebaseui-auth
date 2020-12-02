@@ -49,7 +49,10 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
     
     for (int i = 0; i < [optProviders count]; i++)
     {
-        if ([optProviders[i] isEqualToString:@"facebook"]) {
+        if ([optProviders[i] isEqualToString:@"anonymous"]) {
+            [providers addObject:[[FUIAnonymousAuth alloc] init]];
+        }
+        else if ([optProviders[i] isEqualToString:@"facebook"]) {
             [providers addObject:[[FUIFacebookAuth alloc] init]];
         }
         else if ([optProviders[i] isEqualToString:@"google"]) {
