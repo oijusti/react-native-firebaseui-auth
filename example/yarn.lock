@@ -5514,8 +5514,8 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
 "react-native-firebaseui-auth@git+https://github.com/oijusti/react-native-firebaseui-auth.git":
-  version "1.2.6"
-  resolved "git+https://github.com/oijusti/react-native-firebaseui-auth.git#9914073eb8ab7db46c865985fc0499fdedeeb7e7"
+  version "1.2.7"
+  resolved "git+https://github.com/oijusti/react-native-firebaseui-auth.git#3645f01e3b3bf7eea51611dd936d18a192fb1327"
 
 react-native@0.63.3:
   version "0.63.3"
