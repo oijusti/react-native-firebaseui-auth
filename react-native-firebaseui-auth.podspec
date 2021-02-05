@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.homepage               = 'https://github.com/oijusti/react-native-firebaseui-auth'
   s.license                = package['license']
   s.author                 = 'Oscar Justi <oijustisoft@gmail.com>'
-  s.platforms              = { :ios => '9.0', :tvos => '9.2' }
+  s.platforms              = { :ios => '9.0' }
   s.source                 = { :git => 'https://github.com/oijusti/react-native-firebaseui-auth.git', :tag => "v#{version}" }
   s.source_files           = 'ios/*.{h,m}'
   s.dependency 'React'
