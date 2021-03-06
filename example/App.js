@@ -44,6 +44,7 @@ const App: () => React$Node = () => {
                 onPress={() => {
                   const config = {
                     providers: ['email'],
+                    customScreens: ['AuthPicker'],
                     tosUrl: 'https://example.com/tos.htm',
                     privacyPolicyUrl: 'https://example.com/privacypolicy.htm',
                   };
