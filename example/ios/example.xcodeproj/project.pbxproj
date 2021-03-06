@@ -17,13 +17,9 @@
 		2DCD954D1E0B4F2C00145EB5 /* exampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* exampleTests.m */; };
 		609A816BAC66C41ECBBAD6F6 /* libPods-example-exampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF42790F74D65CF84F29B52F /* libPods-example-exampleTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		9752C80625F3F3A700E5871B /* FUICustomPasswordVerificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9752C7FC25F3F3A700E5871B /* FUICustomPasswordVerificationViewController.xib */; };
-		9752C80725F3F3A700E5871B /* FUICustomPasswordRecoveryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9752C7FD25F3F3A700E5871B /* FUICustomPasswordRecoveryViewController.xib */; };
-		9752C80825F3F3A700E5871B /* FUICustomAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9752C7FE25F3F3A700E5871B /* FUICustomAuthPickerViewController.xib */; };
-		9752C80925F3F3A700E5871B /* FUICustomEmailEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9752C7FF25F3F3A700E5871B /* FUICustomEmailEntryViewController.xib */; };
-		9752C80A25F3F3A700E5871B /* FUICustomPasswordSignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9752C80425F3F3A700E5871B /* FUICustomPasswordSignInViewController.xib */; };
-		9752C80B25F3F3A700E5871B /* FUICustomPasswordSignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9752C80525F3F3A700E5871B /* FUICustomPasswordSignUpViewController.xib */; };
 		9752C81125F3F4CF00E5871B /* libswiftWebKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9752C81025F3F4C600E5871B /* libswiftWebKit.tbd */; };
+		9752C86E25F4254400E5871B /* FUICustomAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9752C86D25F4254400E5871B /* FUICustomAuthPickerViewController.xib */; };
+		9752C87825F42B1800E5871B /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9752C87725F42B1800E5871B /* logo.png */; };
 		97960658252FEDAD004450D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97960657252FEDAD004450D0 /* GoogleService-Info.plist */; };
 		AC758182724577409BEAC960 /* libPods-example-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07960154455178F0FE536ABB /* libPods-example-tvOSTests.a */; };
 		CA5E79CE530264C7FC8263F4 /* libPods-example-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E260A9AE8E298A4050887098 /* libPods-example-tvOS.a */; };
@@ -68,13 +64,9 @@
 		69CE69568543862529F7C47B /* Pods-example-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-example-tvOS/Pods-example-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		7997D263141C70427DE878BA /* Pods-example-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-example-tvOSTests/Pods-example-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = example/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9752C7FC25F3F3A700E5871B /* FUICustomPasswordVerificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FUICustomPasswordVerificationViewController.xib; path = "../../ios/custom-screens/FUICustomPasswordVerificationViewController.xib"; sourceTree = "<group>"; };
-		9752C7FD25F3F3A700E5871B /* FUICustomPasswordRecoveryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FUICustomPasswordRecoveryViewController.xib; path = "../../ios/custom-screens/FUICustomPasswordRecoveryViewController.xib"; sourceTree = "<group>"; };
-		9752C7FE25F3F3A700E5871B /* FUICustomAuthPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FUICustomAuthPickerViewController.xib; path = "../../ios/custom-screens/FUICustomAuthPickerViewController.xib"; sourceTree = "<group>"; };
-		9752C7FF25F3F3A700E5871B /* FUICustomEmailEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FUICustomEmailEntryViewController.xib; path = "../../ios/custom-screens/FUICustomEmailEntryViewController.xib"; sourceTree = "<group>"; };
-		9752C80425F3F3A700E5871B /* FUICustomPasswordSignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FUICustomPasswordSignInViewController.xib; path = "../../ios/custom-screens/FUICustomPasswordSignInViewController.xib"; sourceTree = "<group>"; };
-		9752C80525F3F3A700E5871B /* FUICustomPasswordSignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FUICustomPasswordSignUpViewController.xib; path = "../../ios/custom-screens/FUICustomPasswordSignUpViewController.xib"; sourceTree = "<group>"; };
 		9752C81025F3F4C600E5871B /* libswiftWebKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftWebKit.tbd; path = usr/lib/swift/libswiftWebKit.tbd; sourceTree = SDKROOT; };
+		9752C86D25F4254400E5871B /* FUICustomAuthPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FUICustomAuthPickerViewController.xib; path = example/FUICustomAuthPickerViewController.xib; sourceTree = "<group>"; };
+		9752C87725F42B1800E5871B /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = example/logo.png; sourceTree = "<group>"; };
 		97960657252FEDAD004450D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "example/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BF42790F74D65CF84F29B52F /* libPods-example-exampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example-exampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7CADC8435BB3AEC058ECA12 /* Pods-example-exampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example-exampleTests.debug.xcconfig"; path = "Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -149,12 +141,8 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
-				9752C7FE25F3F3A700E5871B /* FUICustomAuthPickerViewController.xib */,
-				9752C7FF25F3F3A700E5871B /* FUICustomEmailEntryViewController.xib */,
-				9752C7FD25F3F3A700E5871B /* FUICustomPasswordRecoveryViewController.xib */,
-				9752C80425F3F3A700E5871B /* FUICustomPasswordSignInViewController.xib */,
-				9752C80525F3F3A700E5871B /* FUICustomPasswordSignUpViewController.xib */,
-				9752C7FC25F3F3A700E5871B /* FUICustomPasswordVerificationViewController.xib */,
+				9752C86D25F4254400E5871B /* FUICustomAuthPickerViewController.xib */,
+				9752C87725F42B1800E5871B /* logo.png */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = example;
@@ -364,14 +352,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9752C80725F3F3A700E5871B /* FUICustomPasswordRecoveryViewController.xib in Resources */,
-				9752C80625F3F3A700E5871B /* FUICustomPasswordVerificationViewController.xib in Resources */,
+				9752C86E25F4254400E5871B /* FUICustomAuthPickerViewController.xib in Resources */,
+				9752C87825F42B1800E5871B /* logo.png in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				9752C80A25F3F3A700E5871B /* FUICustomPasswordSignInViewController.xib in Resources */,
-				9752C80925F3F3A700E5871B /* FUICustomEmailEntryViewController.xib in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				9752C80825F3F3A700E5871B /* FUICustomAuthPickerViewController.xib in Resources */,
-				9752C80B25F3F3A700E5871B /* FUICustomPasswordSignUpViewController.xib in Resources */,
 				97960658252FEDAD004450D0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
