@@ -54,7 +54,7 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
 {
     NSMutableArray<id<FUIAuthProvider>> *providers = [[NSMutableArray alloc] init];
     NSArray<NSString *> *optProviders = [options objectForKey:@"providers"];
-    NSArray<NSString *> *optCustomScreens = [options objectForKey:@"customScreens"];
+    NSArray<NSString *> *optCustomElems = [options objectForKey:@"customElems"];
     
     for (int i = 0; i < [optProviders count]; i++)
     {
@@ -93,24 +93,24 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
         }
     }
     
-    for (int i = 0; i < [optCustomScreens count]; i++)
+    for (int i = 0; i < [optCustomElems count]; i++)
     {
-        if ([optCustomScreens[i] isEqualToString:@"AuthPicker"]) {
+        if ([optCustomElems[i] isEqualToString:@"AuthPicker"]) {
             self.customAuthPicker = true;
         }
-        else if ([optCustomScreens[i] isEqualToString:@"EmailEntry"]) {
+        else if ([optCustomElems[i] isEqualToString:@"EmailEntry"]) {
             self.customEmailEntry = true;
         }
-        else if ([optCustomScreens[i] isEqualToString:@"PasswordSignIn"]) {
+        else if ([optCustomElems[i] isEqualToString:@"PasswordSignIn"]) {
             self.customPasswordSignIn = true;
         }
-        else if ([optCustomScreens[i] isEqualToString:@"PasswordSignUp"]) {
+        else if ([optCustomElems[i] isEqualToString:@"PasswordSignUp"]) {
             self.customPasswordSignUp = true;
         }
-        else if ([optCustomScreens[i] isEqualToString:@"PasswordRecovery"]) {
+        else if ([optCustomElems[i] isEqualToString:@"PasswordRecovery"]) {
             self.customPasswordRecovery = true;
         }
-        else if ([optCustomScreens[i] isEqualToString:@"PasswordVerification"]) {
+        else if ([optCustomElems[i] isEqualToString:@"PasswordVerification"]) {
             self.customPasswordVerification = true;
         }
     }
