@@ -3,6 +3,12 @@
 @interface RNFirebaseuiAuth ()
 @property (nonatomic, retain) FUIAuth *authUI;
 @property (nonatomic, retain) FIRAdditionalUserInfo *additionalUserInfo;
+@property (nonatomic, assign) BOOL customAuthPicker;
+@property (nonatomic, assign) BOOL customEmailEntry;
+@property (nonatomic, assign) BOOL customPasswordSignIn;
+@property (nonatomic, assign) BOOL customPasswordSignUp;
+@property (nonatomic, assign) BOOL customPasswordRecovery;
+@property (nonatomic, assign) BOOL customPasswordVerification;
 @property (nonatomic) RCTPromiseResolveBlock _resolve;
 @property (nonatomic) RCTPromiseRejectBlock _reject;
 @end
@@ -38,6 +44,8 @@ NSString* const ERROR_FIREBASE = @"ERROR_FIREBASE";
     return self;
 }
 
+#pragma mark react native
+
 RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
@@ -46,6 +54,7 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
 {
     NSMutableArray<id<FUIAuthProvider>> *providers = [[NSMutableArray alloc] init];
     NSArray<NSString *> *optProviders = [options objectForKey:@"providers"];
+    NSArray<NSString *> *optCustomScreens = [options objectForKey:@"customScreens"];
     
     for (int i = 0; i < [optProviders count]; i++)
     {
@@ -54,10 +63,10 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
             break;
         }
         if ([optProviders[i] isEqualToString:@"facebook"]) {
-            [providers addObject:[[FUIFacebookAuth alloc] init]];
+            [providers addObject:[[FUIFacebookAuth alloc] initWithAuthUI:[FUIAuth defaultAuthUI]]];
         }
         else if ([optProviders[i] isEqualToString:@"google"]) {
-            [providers addObject:[[FUIGoogleAuth alloc] init]];
+            [providers addObject:[[FUIGoogleAuth alloc] initWithAuthUI:[FUIAuth defaultAuthUI]]];
         }
         else if ([optProviders[i] isEqualToString:@"email"]) {
             [providers addObject:[[FUIEmailAuth alloc] init]];
@@ -81,6 +90,28 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
         }
         else if ([optProviders[i] isEqualToString:@"microsoft"]) {
             [providers addObject:[FUIOAuth microsoftAuthProvider]];
+        }
+    }
+    
+    for (int i = 0; i < [optCustomScreens count]; i++)
+    {
+        if ([optCustomScreens[i] isEqualToString:@"AuthPicker"]) {
+            self.customAuthPicker = true;
+        }
+        else if ([optCustomScreens[i] isEqualToString:@"EmailEntry"]) {
+            self.customEmailEntry = true;
+        }
+        else if ([optCustomScreens[i] isEqualToString:@"PasswordSignIn"]) {
+            self.customPasswordSignIn = true;
+        }
+        else if ([optCustomScreens[i] isEqualToString:@"PasswordSignUp"]) {
+            self.customPasswordSignUp = true;
+        }
+        else if ([optCustomScreens[i] isEqualToString:@"PasswordRecovery"]) {
+            self.customPasswordRecovery = true;
+        }
+        else if ([optCustomScreens[i] isEqualToString:@"PasswordVerification"]) {
+            self.customPasswordVerification = true;
         }
     }
     
@@ -133,10 +164,11 @@ RCT_EXPORT_METHOD(delete:(RCTPromiseResolveBlock)resolve
     }];
 }
 
+#pragma mark override
+
 - (void)authUI:(FUIAuth *)authUI
 didSignInWithAuthDataResult:(nullable FIRAuthDataResult *)authDataResult
          error:(nullable NSError *)error{
-    
     if (error) {
         if (error.code == FUIAuthErrorCodeUserCancelledSignIn) {
             self._reject(ERROR_USER_CANCELLED, @"User cancelled the sign-in process", error);
@@ -154,6 +186,111 @@ didSignInWithAuthDataResult:(nullable FIRAuthDataResult *)authDataResult
         return;
     }
 }
+
+- (FUIAuthPickerViewController *)
+authPickerViewControllerForAuthUI:(FUIAuth *)authUI {
+    if (self.customAuthPicker){
+        return [[FUICustomAuthPickerViewController alloc]
+                initWithNibName:@"FUICustomAuthPickerViewController"
+                bundle:[NSBundle mainBundle]
+                authUI:authUI];
+    }
+    else {
+        return [[FUIAuthPickerViewController alloc]
+                initWithAuthUI:authUI];
+    }
+}
+
+- (FUIEmailEntryViewController *)
+emailEntryViewControllerForAuthUI:(FUIAuth *)authUI {
+    if (self.customEmailEntry){
+        return [[FUICustomEmailEntryViewController alloc]
+                initWithNibName:@"FUICustomEmailEntryViewController"
+                bundle:[NSBundle mainBundle]
+                authUI:authUI];
+    }
+    else {
+        return [[FUIEmailEntryViewController alloc]
+                initWithAuthUI:authUI];
+    }
+}
+
+- (FUIPasswordSignInViewController *)
+passwordSignInViewControllerForAuthUI:(FUIAuth *)authUI
+email:(NSString *)email {
+    if (self.customPasswordSignIn){
+        return [[FUICustomPasswordSignInViewController alloc]
+                initWithNibName:@"FUICustomPasswordSignInViewController"
+                bundle:[NSBundle mainBundle]
+                authUI:authUI
+                email:email];
+    }
+    else {
+        return [[FUIPasswordSignInViewController alloc]
+                initWithAuthUI:authUI
+                email:email];
+        
+    }
+}
+
+- (FUIPasswordSignUpViewController *)
+passwordSignUpViewControllerForAuthUI:(FUIAuth *)authUI
+email:(NSString *)email {
+    if (self.customPasswordSignUp){
+        return [[FUICustomPasswordSignUpViewController alloc]
+                initWithNibName:@"FUICustomPasswordSignUpViewController"
+                bundle:[NSBundle mainBundle]
+                authUI:authUI
+                email:email
+                requireDisplayName:YES];
+    }
+    else {
+        return [[FUIPasswordSignUpViewController alloc]
+                initWithAuthUI:authUI
+                email:email
+                requireDisplayName:YES];
+    }
+}
+
+- (FUIPasswordRecoveryViewController *)
+passwordRecoveryViewControllerForAuthUI:(FUIAuth *)authUI
+email:(NSString *)email {
+    if (self.customPasswordRecovery){
+        return [[FUICustomPasswordRecoveryViewController alloc]
+                initWithNibName:@"FUICustomPasswordRecoveryViewController"
+                bundle:[NSBundle mainBundle]
+                authUI:authUI
+                email:email];
+    }
+    else {
+        return [[FUIPasswordRecoveryViewController alloc]
+                initWithAuthUI:authUI
+                email:email];
+        
+    }
+}
+
+- (FUIPasswordVerificationViewController *)
+passwordVerificationViewControllerForAuthUI:(FUIAuth *)authUI
+email:(NSString *)email
+newCredential:(FIRAuthCredential *)newCredential {
+    if (self.customPasswordVerification){
+        return [[FUICustomPasswordVerificationViewController alloc]
+                initWithNibName:@"FUICustomPasswordVerificationViewController"
+                bundle:[NSBundle mainBundle]
+                authUI:authUI
+                email:email
+                newCredential:newCredential];
+    }
+    else {
+        return [[FUIPasswordVerificationViewController alloc]
+                initWithAuthUI:authUI
+                email:email
+                newCredential:newCredential];
+    }
+}
+
+#pragma mark helpers
 
 - (NSDictionary*)mapUser:(nullable FIRUser*)user {
     return @{
