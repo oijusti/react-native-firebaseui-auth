@@ -63,44 +63,44 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
   public void signIn(final ReadableMap config, final Promise promise) {
     signInPromise = promise;
     Activity currentActivity = getCurrentActivity();
-    ReadableArray optProviders = config.getArray("providers");
-    ReadableArray optCustomElems = config.getArray("customElems");
+    ReadableArray cfgProviders = config.getArray("providers");
+    ReadableArray cfgCustomizations = config.getArray("customizations");
 
     final String tosUrl = config.hasKey("tosUrl") ? config.getString("tosUrl") : null;
     final String privacyPolicyUrl = config.hasKey("privacyPolicyUrl") ? config.getString("privacyPolicyUrl") : null;
     final List<AuthUI.IdpConfig> providers = new ArrayList<>();
 
-    for (int i = 0; i < optProviders.size(); i++)
+    for (int i = 0; i < cfgProviders.size(); i++)
     {
-      if (optProviders.getString(i).equals("anonymous")) {
+      if (cfgProviders.getString(i).equals("anonymous")) {
         providers.add(new AuthUI.IdpConfig.AnonymousBuilder().build());
         break;
       }
-      if (optProviders.getString(i).equals("facebook")) {
+      if (cfgProviders.getString(i).equals("facebook")) {
         providers.add(new AuthUI.IdpConfig.FacebookBuilder().build());
       }
-      else if (optProviders.getString(i).equals("google")) {
+      else if (cfgProviders.getString(i).equals("google")) {
         providers.add(new AuthUI.IdpConfig.GoogleBuilder().build());
       }
-      else if (optProviders.getString(i).equals("email")) {
+      else if (cfgProviders.getString(i).equals("email")) {
         providers.add(new AuthUI.IdpConfig.EmailBuilder().build());
       }
-      else if (optProviders.getString(i).equals("phone")) {
+      else if (cfgProviders.getString(i).equals("phone")) {
         providers.add(new AuthUI.IdpConfig.PhoneBuilder().build());
       }
-      else if (optProviders.getString(i).equals("apple")) {
+      else if (cfgProviders.getString(i).equals("apple")) {
         providers.add(new AuthUI.IdpConfig.AppleBuilder().build());
       }
-      else if (optProviders.getString(i).equals("yahoo")) {
+      else if (cfgProviders.getString(i).equals("yahoo")) {
         providers.add(new AuthUI.IdpConfig.YahooBuilder().build());
       }
-      else if (optProviders.getString(i).equals("github")) {
+      else if (cfgProviders.getString(i).equals("github")) {
         providers.add(new AuthUI.IdpConfig.GitHubBuilder().build());
       }
-      else if (optProviders.getString(i).equals("twitter")) {
+      else if (cfgProviders.getString(i).equals("twitter")) {
         providers.add(new AuthUI.IdpConfig.TwitterBuilder().build());
       }
-      else if (optProviders.getString(i).equals("microsoft")) {
+      else if (cfgProviders.getString(i).equals("microsoft")) {
         providers.add(new AuthUI.IdpConfig.MicrosoftBuilder().build());
       }
     }
@@ -114,11 +114,11 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
       int loginTheme = resources.getIdentifier("AuthTheme", "style", packageName);
       int loginLogo = resources.getIdentifier("auth_logo", "drawable", packageName);
 
-      for (int i = 0; i < optCustomElems.size(); i++) {
-        if (optCustomElems.getString(i).equals("Theme")) {
+      for (int i = 0; i < cfgCustomizations.size(); i++) {
+        if (cfgCustomizations.getString(i).equals("theme")) {
           builder.setTheme(loginTheme);
         }
-        else if (optCustomElems.getString(i).equals("Logo")) {
+        else if (cfgCustomizations.getString(i).equals("logo")) {
           builder.setLogo(loginLogo);
         }
       }

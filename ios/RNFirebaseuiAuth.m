@@ -53,64 +53,64 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
     NSMutableArray<id<FUIAuthProvider>> *providers = [[NSMutableArray alloc] init];
-    NSArray<NSString *> *optProviders = [options objectForKey:@"providers"];
-    NSArray<NSString *> *optCustomElems = [options objectForKey:@"customElems"];
+    NSArray<NSString *> *cfgProviders = [options objectForKey:@"providers"];
+    NSArray<NSString *> *cfgCustomizations = [options objectForKey:@"customizations"];
     
-    for (int i = 0; i < [optProviders count]; i++)
+    for (int i = 0; i < [cfgProviders count]; i++)
     {
-        if ([optProviders[i] isEqualToString:@"anonymous"]) {
+        if ([cfgProviders[i] isEqualToString:@"anonymous"]) {
             [providers addObject:[[FUIAnonymousAuth alloc] init]];
             break;
         }
-        if ([optProviders[i] isEqualToString:@"facebook"]) {
+        if ([cfgProviders[i] isEqualToString:@"facebook"]) {
             [providers addObject:[[FUIFacebookAuth alloc] initWithAuthUI:[FUIAuth defaultAuthUI]]];
         }
-        else if ([optProviders[i] isEqualToString:@"google"]) {
+        else if ([cfgProviders[i] isEqualToString:@"google"]) {
             [providers addObject:[[FUIGoogleAuth alloc] initWithAuthUI:[FUIAuth defaultAuthUI]]];
         }
-        else if ([optProviders[i] isEqualToString:@"email"]) {
+        else if ([cfgProviders[i] isEqualToString:@"email"]) {
             [providers addObject:[[FUIEmailAuth alloc] init]];
         }
-        else if ([optProviders[i] isEqualToString:@"phone"]) {
+        else if ([cfgProviders[i] isEqualToString:@"phone"]) {
             [providers addObject:[[FUIPhoneAuth alloc] initWithAuthUI:[FUIAuth defaultAuthUI]]];
         }
-        else if ([optProviders[i] isEqualToString:@"apple"]) {
+        else if ([cfgProviders[i] isEqualToString:@"apple"]) {
             if (@available(iOS 13.0, *)) {
                 [providers addObject:[FUIOAuth appleAuthProvider]];
             }
         }
-        else if ([optProviders[i] isEqualToString:@"yahoo"]) {
+        else if ([cfgProviders[i] isEqualToString:@"yahoo"]) {
             [providers addObject:[FUIOAuth yahooAuthProvider]];
         }
-        else if ([optProviders[i] isEqualToString:@"github"]) {
+        else if ([cfgProviders[i] isEqualToString:@"github"]) {
             [providers addObject:[FUIOAuth githubAuthProvider]];
         }
-        else if ([optProviders[i] isEqualToString:@"twitter"]) {
+        else if ([cfgProviders[i] isEqualToString:@"twitter"]) {
             [providers addObject:[FUIOAuth twitterAuthProvider]];
         }
-        else if ([optProviders[i] isEqualToString:@"microsoft"]) {
+        else if ([cfgProviders[i] isEqualToString:@"microsoft"]) {
             [providers addObject:[FUIOAuth microsoftAuthProvider]];
         }
     }
     
-    for (int i = 0; i < [optCustomElems count]; i++)
+    for (int i = 0; i < [cfgCustomizations count]; i++)
     {
-        if ([optCustomElems[i] isEqualToString:@"AuthPicker"]) {
+        if ([cfgCustomizations[i] isEqualToString:@"auth_picker"]) {
             self.customAuthPicker = true;
         }
-        else if ([optCustomElems[i] isEqualToString:@"EmailEntry"]) {
+        else if ([cfgCustomizations[i] isEqualToString:@"email_entry"]) {
             self.customEmailEntry = true;
         }
-        else if ([optCustomElems[i] isEqualToString:@"PasswordSignIn"]) {
+        else if ([cfgCustomizations[i] isEqualToString:@"password_sign_in"]) {
             self.customPasswordSignIn = true;
         }
-        else if ([optCustomElems[i] isEqualToString:@"PasswordSignUp"]) {
+        else if ([cfgCustomizations[i] isEqualToString:@"password_sign_up"]) {
             self.customPasswordSignUp = true;
         }
-        else if ([optCustomElems[i] isEqualToString:@"PasswordRecovery"]) {
+        else if ([cfgCustomizations[i] isEqualToString:@"password_recovery"]) {
             self.customPasswordRecovery = true;
         }
-        else if ([optCustomElems[i] isEqualToString:@"PasswordVerification"]) {
+        else if ([cfgCustomizations[i] isEqualToString:@"password_verification"]) {
             self.customPasswordVerification = true;
         }
     }
