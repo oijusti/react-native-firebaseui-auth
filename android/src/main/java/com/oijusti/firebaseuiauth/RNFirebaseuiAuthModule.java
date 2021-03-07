@@ -72,35 +72,36 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
 
     for (int i = 0; i < cfgProviders.size(); i++)
     {
-      if (cfgProviders.getString(i).equals("anonymous")) {
+      String provider = cfgProviders.getString(i);
+      if (provider.equals("anonymous")) {
         providers.add(new AuthUI.IdpConfig.AnonymousBuilder().build());
         break;
       }
-      if (cfgProviders.getString(i).equals("facebook")) {
+      if (provider.equals("facebook")) {
         providers.add(new AuthUI.IdpConfig.FacebookBuilder().build());
       }
-      else if (cfgProviders.getString(i).equals("google")) {
+      else if (provider.equals("google")) {
         providers.add(new AuthUI.IdpConfig.GoogleBuilder().build());
       }
-      else if (cfgProviders.getString(i).equals("email")) {
+      else if (provider.equals("email")) {
         providers.add(new AuthUI.IdpConfig.EmailBuilder().build());
       }
-      else if (cfgProviders.getString(i).equals("phone")) {
+      else if (provider.equals("phone")) {
         providers.add(new AuthUI.IdpConfig.PhoneBuilder().build());
       }
-      else if (cfgProviders.getString(i).equals("apple")) {
+      else if (provider.equals("apple")) {
         providers.add(new AuthUI.IdpConfig.AppleBuilder().build());
       }
-      else if (cfgProviders.getString(i).equals("yahoo")) {
+      else if (provider.equals("yahoo")) {
         providers.add(new AuthUI.IdpConfig.YahooBuilder().build());
       }
-      else if (cfgProviders.getString(i).equals("github")) {
+      else if (provider.equals("github")) {
         providers.add(new AuthUI.IdpConfig.GitHubBuilder().build());
       }
-      else if (cfgProviders.getString(i).equals("twitter")) {
+      else if (provider.equals("twitter")) {
         providers.add(new AuthUI.IdpConfig.TwitterBuilder().build());
       }
-      else if (cfgProviders.getString(i).equals("microsoft")) {
+      else if (provider.equals("microsoft")) {
         providers.add(new AuthUI.IdpConfig.MicrosoftBuilder().build());
       }
     }
@@ -115,10 +116,11 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
       int loginLogo = resources.getIdentifier("auth_logo", "drawable", packageName);
 
       for (int i = 0; i < cfgCustomizations.size(); i++) {
-        if (cfgCustomizations.getString(i).equals("theme")) {
+        String customization = cfgCustomizations.getString(i);
+        if (customization.equals("theme")) {
           builder.setTheme(loginTheme);
         }
-        else if (cfgCustomizations.getString(i).equals("logo")) {
+        else if (customization.equals("logo")) {
           builder.setLogo(loginLogo);
         }
       }
