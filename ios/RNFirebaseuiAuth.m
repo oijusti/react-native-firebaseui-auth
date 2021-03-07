@@ -58,59 +58,61 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
     
     for (int i = 0; i < [cfgProviders count]; i++)
     {
-        if ([cfgProviders[i] isEqualToString:@"anonymous"]) {
+        NSString *provider = cfgProviders[i];
+        if ([provider isEqualToString:@"anonymous"]) {
             [providers addObject:[[FUIAnonymousAuth alloc] init]];
             break;
         }
-        if ([cfgProviders[i] isEqualToString:@"facebook"]) {
+        if ([provider isEqualToString:@"facebook"]) {
             [providers addObject:[[FUIFacebookAuth alloc] initWithAuthUI:[FUIAuth defaultAuthUI]]];
         }
-        else if ([cfgProviders[i] isEqualToString:@"google"]) {
+        else if ([provider isEqualToString:@"google"]) {
             [providers addObject:[[FUIGoogleAuth alloc] initWithAuthUI:[FUIAuth defaultAuthUI]]];
         }
-        else if ([cfgProviders[i] isEqualToString:@"email"]) {
+        else if ([provider isEqualToString:@"email"]) {
             [providers addObject:[[FUIEmailAuth alloc] init]];
         }
-        else if ([cfgProviders[i] isEqualToString:@"phone"]) {
+        else if ([provider isEqualToString:@"phone"]) {
             [providers addObject:[[FUIPhoneAuth alloc] initWithAuthUI:[FUIAuth defaultAuthUI]]];
         }
-        else if ([cfgProviders[i] isEqualToString:@"apple"]) {
+        else if ([provider isEqualToString:@"apple"]) {
             if (@available(iOS 13.0, *)) {
                 [providers addObject:[FUIOAuth appleAuthProvider]];
             }
         }
-        else if ([cfgProviders[i] isEqualToString:@"yahoo"]) {
+        else if ([provider isEqualToString:@"yahoo"]) {
             [providers addObject:[FUIOAuth yahooAuthProvider]];
         }
-        else if ([cfgProviders[i] isEqualToString:@"github"]) {
+        else if ([provider isEqualToString:@"github"]) {
             [providers addObject:[FUIOAuth githubAuthProvider]];
         }
-        else if ([cfgProviders[i] isEqualToString:@"twitter"]) {
+        else if ([provider isEqualToString:@"twitter"]) {
             [providers addObject:[FUIOAuth twitterAuthProvider]];
         }
-        else if ([cfgProviders[i] isEqualToString:@"microsoft"]) {
+        else if ([provider isEqualToString:@"microsoft"]) {
             [providers addObject:[FUIOAuth microsoftAuthProvider]];
         }
     }
     
     for (int i = 0; i < [cfgCustomizations count]; i++)
     {
-        if ([cfgCustomizations[i] isEqualToString:@"auth_picker"]) {
+        NSString *customization = cfgProviders[i];
+        if ([customization isEqualToString:@"auth_picker"]) {
             self.customAuthPicker = true;
         }
-        else if ([cfgCustomizations[i] isEqualToString:@"email_entry"]) {
+        else if ([customization isEqualToString:@"email_entry"]) {
             self.customEmailEntry = true;
         }
-        else if ([cfgCustomizations[i] isEqualToString:@"password_sign_in"]) {
+        else if ([customization isEqualToString:@"password_sign_in"]) {
             self.customPasswordSignIn = true;
         }
-        else if ([cfgCustomizations[i] isEqualToString:@"password_sign_up"]) {
+        else if ([customization isEqualToString:@"password_sign_up"]) {
             self.customPasswordSignUp = true;
         }
-        else if ([cfgCustomizations[i] isEqualToString:@"password_recovery"]) {
+        else if ([customization isEqualToString:@"password_recovery"]) {
             self.customPasswordRecovery = true;
         }
-        else if ([cfgCustomizations[i] isEqualToString:@"password_verification"]) {
+        else if ([customization isEqualToString:@"password_verification"]) {
             self.customPasswordVerification = true;
         }
     }
