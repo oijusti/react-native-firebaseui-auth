@@ -3,6 +3,8 @@ package com.oijusti.firebaseuiauth;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 
 import androidx.annotation.NonNull;
 
@@ -62,6 +64,7 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     signInPromise = promise;
     Activity currentActivity = getCurrentActivity();
     ReadableArray optProviders = config.getArray("providers");
+    ReadableArray optCustomElems = config.getArray("customElems");
 
     final String tosUrl = config.hasKey("tosUrl") ? config.getString("tosUrl") : null;
     final String privacyPolicyUrl = config.hasKey("privacyPolicyUrl") ? config.getString("privacyPolicyUrl") : null;
@@ -101,9 +104,28 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
         providers.add(new AuthUI.IdpConfig.MicrosoftBuilder().build());
       }
     }
+
+    AuthUI.SignInIntentBuilder builder = AuthUI.getInstance().createSignInIntentBuilder();
+    try {
+      PackageManager pm = reactContext.getPackageManager();
+      String packageName = reactContext.getPackageName();
+      Resources resources = pm.getResourcesForApplication(packageName);
+
+      int loginTheme = resources.getIdentifier("AuthTheme", "style", packageName);
+      int loginLogo = resources.getIdentifier("auth_logo", "drawable", packageName);
+
+      for (int i = 0; i < optCustomElems.size(); i++) {
+        if (optCustomElems.getString(i).equals("Theme")) {
+          builder.setTheme(loginTheme);
+        }
+        else if (optCustomElems.getString(i).equals("Logo")) {
+          builder.setLogo(loginLogo);
+        }
+      }
+    } catch (PackageManager.NameNotFoundException e) { }
+
     currentActivity.startActivityForResult(
-            AuthUI.getInstance()
-                    .createSignInIntentBuilder()
+            builder
                     .setAvailableProviders(providers)
                     .setTosAndPrivacyPolicyUrls(
                             tosUrl,
