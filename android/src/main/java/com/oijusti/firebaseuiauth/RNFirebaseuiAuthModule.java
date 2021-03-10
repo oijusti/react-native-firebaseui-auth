@@ -63,11 +63,14 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
   public void signIn(final ReadableMap config, final Promise promise) {
     signInPromise = promise;
     Activity currentActivity = getCurrentActivity();
-    ReadableArray cfgProviders = config.getArray("providers");
-    ReadableArray cfgCustomizations = config.getArray("customizations");
 
+    final ReadableArray cfgProviders = config.getArray("providers");
+    final ReadableArray cfgCustomizations = config.hasKey("customizations") ? config.getArray("customizations") : null;
     final String tosUrl = config.hasKey("tosUrl") ? config.getString("tosUrl") : null;
     final String privacyPolicyUrl = config.hasKey("privacyPolicyUrl") ? config.getString("privacyPolicyUrl") : null;
+    final boolean allowNewAccounts = !config.hasKey("allowNewAccounts") || config.getBoolean("allowNewAccounts");
+    final boolean requireName = !config.hasKey("requireName") || config.getBoolean("requireName");
+
     final List<AuthUI.IdpConfig> providers = new ArrayList<>();
 
     for (int i = 0; i < cfgProviders.size(); i++)
@@ -84,7 +87,10 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
         providers.add(new AuthUI.IdpConfig.GoogleBuilder().build());
       }
       else if (provider.equals("email")) {
-        providers.add(new AuthUI.IdpConfig.EmailBuilder().build());
+        providers.add(new AuthUI.IdpConfig.EmailBuilder()
+                .setAllowNewAccounts(allowNewAccounts)
+                .setRequireName(requireName)
+                .build());
       }
       else if (provider.equals("phone")) {
         providers.add(new AuthUI.IdpConfig.PhoneBuilder().build());
@@ -107,24 +113,26 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     }
 
     AuthUI.SignInIntentBuilder builder = AuthUI.getInstance().createSignInIntentBuilder();
-    try {
-      PackageManager pm = reactContext.getPackageManager();
-      String packageName = reactContext.getPackageName();
-      Resources resources = pm.getResourcesForApplication(packageName);
+    if (cfgCustomizations != null) {
+      try {
+        PackageManager pm = reactContext.getPackageManager();
+        String packageName = reactContext.getPackageName();
+        Resources resources = pm.getResourcesForApplication(packageName);
 
-      int loginTheme = resources.getIdentifier("AuthTheme", "style", packageName);
-      int loginLogo = resources.getIdentifier("auth_logo", "drawable", packageName);
+        int loginTheme = resources.getIdentifier("AuthTheme", "style", packageName);
+        int loginLogo = resources.getIdentifier("auth_logo", "drawable", packageName);
 
-      for (int i = 0; i < cfgCustomizations.size(); i++) {
-        String customization = cfgCustomizations.getString(i);
-        if (customization.equals("theme")) {
-          builder.setTheme(loginTheme);
+        for (int i = 0; i < cfgCustomizations.size(); i++) {
+          String customization = cfgCustomizations.getString(i);
+          if (customization.equals("theme")) {
+            builder.setTheme(loginTheme);
+          }
+          else if (customization.equals("logo")) {
+            builder.setLogo(loginLogo);
+          }
         }
-        else if (customization.equals("logo")) {
-          builder.setLogo(loginLogo);
-        }
-      }
-    } catch (PackageManager.NameNotFoundException e) { }
+      } catch (PackageManager.NameNotFoundException e) { }
+    }
 
     currentActivity.startActivityForResult(
             builder
