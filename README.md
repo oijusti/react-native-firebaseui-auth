@@ -151,6 +151,66 @@ isNewUser |`boolean`| Indicates whether or not the current user was signed in fo
 creationTimestamp |`number`| Stores the timestamp at which this account was created as dictated by the server clock in milliseconds since epoch. |
 lastSignInTimestamp |`number`| Stores the last signin timestamp as dictated by the server clock in milliseconds since epoch. |
 
+### UI Customization
+Optionally, you can use the parameter `customizations` to change the look of the authentication screens. This does not apply to the actual sign-in buttons and their position. What you can change depends on the platform.
+
+<div align="left">
+<p float="left">
+<img src="https://raw.githubusercontent.com/oijusti/react-native-firebaseui-auth/HEAD/firebaseui-android-custom.png" height="300"/>
+<img src="https://raw.githubusercontent.com/oijusti/react-native-firebaseui-auth/HEAD/firebaseui-ios-custom.png" height="300"/>
+
+
+##### Android
+The values available for android customization are as follows,
+```javascript
+  const config = {
+    ...
+    customizations: [
+      'theme',
+      'logo'
+    ],
+  };
+```
+First add FirebaseUI in your build.gradle (:app),
+```javascript
+dependencies {
+    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
+    ...
+```
+
+For `theme`, add the next style in your `styles.xml`, then copy into the `drawable` folder an image to use for background and name it `auth_background.png`.
+```javascript
+    <style name="AuthTheme" parent="FirebaseUI">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/white</item>
+        <item name="colorControlHighlight">@android:color/white</item>
+        <item name="android:windowBackground">@drawable/auth_background</item>
+    </style>
+```
+For `logo`, copy an image in the `drawable` folder and name it `auth_logo.png`.
+
+
+##### iOS
+The values available for iOS customization correspond to specific screens and are as follows,
+```javascript
+  const config = {
+    ...
+    customizations: [
+      'auth_picker',
+      'email_entry',
+      'password_sign_in',
+      'password_sign_up',
+      'password_recovery',
+      'password_verification'
+    ],
+  };
+```
+Open your project in `XCode` and add the `.xib` file of the screen you want to customize. The .xib files are located in `./ios/custom-screens/` of this library. Let's say, you want to customize the `auth-picker` screen, add the file `FUICustomAuthPickerViewController.xib` and use the XCode tools to add it labels, images, change colors, and so on.
+
 ## Example Project
 
 Create a project in the [Firebase Console](https://console.firebase.google.com) and add apps for Android and iOS. Then enable Email/Password provider in Authentication.
@@ -173,15 +233,9 @@ Feel free to report bugs, ask questions and submit a PR.
 
 If this is your first open source contribution, please take a look at this [guide](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github) .
 
-## Sponsors
+## Find this library useful?
 
-Become a sponsor to support the further development of this and other libraries.
-
-<div align="left">
-<a href="https://oiradio.co" target="_blank"><img src="https://oiradio.co/assets/images/stations/i/i0.png"></a>
-</div>
-
-Or give me a star ✭ if you like it!
+Give me a star ✭ if you like it!
 
 ## License
 

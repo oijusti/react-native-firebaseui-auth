@@ -15,6 +15,7 @@ declare namespace RNFirebaseuiAuth {
 
   interface Config {
     providers: string[];
+    customizations?: string[];
     tosUrl?: string;
     privacyPolicyUrl?: string;
   }

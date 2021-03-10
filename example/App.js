@@ -43,7 +43,8 @@ const App: () => React$Node = () => {
               <Button
                 onPress={() => {
                   const config = {
-                    providers: ['email'],
+                    providers: ['email', 'phone'],
+                    customizations: ['auth_picker', 'theme', 'logo'],
                     tosUrl: 'https://example.com/tos.htm',
                     privacyPolicyUrl: 'https://example.com/privacypolicy.htm',
                   };
