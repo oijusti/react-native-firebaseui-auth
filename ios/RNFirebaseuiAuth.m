@@ -48,14 +48,16 @@ NSString* const ERROR_FIREBASE = @"ERROR_FIREBASE";
 
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
+RCT_EXPORT_METHOD(signIn:(NSDictionary *)config
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
     NSMutableArray<id<FUIAuthProvider>> *providers = [[NSMutableArray alloc] init];
-    NSArray<NSString *> *cfgProviders = [options objectForKey:@"providers"];
-    NSArray<NSString *> *cfgCustomizations = [options objectForKey:@"customizations"];
-    
+    NSArray<NSString *> *cfgProviders = [config objectForKey:@"providers"];
+    NSArray<NSString *> *cfgCustomizations = [config objectForKey:@"customizations"];
+    BOOL allowNewEmailAccounts = [config valueForKey:@"allowNewEmailAccounts"];
+    BOOL requireDisplayName = [config valueForKey:@"requireDisplayName"];
+
     for (int i = 0; i < [cfgProviders count]; i++)
     {
         NSString *provider = cfgProviders[i];
@@ -70,7 +72,12 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
             [providers addObject:[[FUIGoogleAuth alloc] initWithAuthUI:[FUIAuth defaultAuthUI]]];
         }
         else if ([provider isEqualToString:@"email"]) {
-            [providers addObject:[[FUIEmailAuth alloc] init]];
+            [providers addObject:[[FUIEmailAuth alloc] initAuthAuthUI:[FUIAuth defaultAuthUI]
+                                                         signInMethod:FIREmailPasswordAuthSignInMethod
+                                                      forceSameDevice:NO
+                                                allowNewEmailAccounts:allowNewEmailAccounts
+                                                   requireDisplayName:requireDisplayName
+                                                    actionCodeSetting:[[FIRActionCodeSettings alloc] init]]];
         }
         else if ([provider isEqualToString:@"phone"]) {
             [providers addObject:[[FUIPhoneAuth alloc] initWithAuthUI:[FUIAuth defaultAuthUI]]];
@@ -118,8 +125,8 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)options
     }
     
     self.authUI.providers = providers;
-    self.authUI.TOSURL = [NSURL URLWithString:options[@"tosUrl"]];
-    self.authUI.privacyPolicyURL = [NSURL URLWithString:options[@"privacyPolicyUrl"]];
+    self.authUI.TOSURL = [NSURL URLWithString:config[@"tosUrl"]];
+    self.authUI.privacyPolicyURL = [NSURL URLWithString:config[@"privacyPolicyUrl"]];
     
     UINavigationController *authViewController = [self.authUI authViewController];
     UIViewController *rootVC = UIApplication.sharedApplication.delegate.window.rootViewController;

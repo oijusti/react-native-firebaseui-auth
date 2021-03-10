@@ -68,8 +68,8 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     final ReadableArray cfgCustomizations = config.hasKey("customizations") ? config.getArray("customizations") : null;
     final String tosUrl = config.hasKey("tosUrl") ? config.getString("tosUrl") : null;
     final String privacyPolicyUrl = config.hasKey("privacyPolicyUrl") ? config.getString("privacyPolicyUrl") : null;
-    final boolean allowNewAccounts = !config.hasKey("allowNewAccounts") || config.getBoolean("allowNewAccounts");
-    final boolean requireName = !config.hasKey("requireName") || config.getBoolean("requireName");
+    final boolean allowNewEmailAccounts = !config.hasKey("allowNewEmailAccounts") || config.getBoolean("allowNewEmailAccounts");
+    final boolean requireDisplayName = !config.hasKey("requireDisplayName") || config.getBoolean("requireDisplayName");
 
     final List<AuthUI.IdpConfig> providers = new ArrayList<>();
 
@@ -88,8 +88,8 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
       }
       else if (provider.equals("email")) {
         providers.add(new AuthUI.IdpConfig.EmailBuilder()
-                .setAllowNewAccounts(allowNewAccounts)
-                .setRequireName(requireName)
+                .setAllowNewAccounts(allowNewEmailAccounts)
+                .setRequireName(requireDisplayName)
                 .build());
       }
       else if (provider.equals("phone")) {

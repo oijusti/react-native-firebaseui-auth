@@ -47,8 +47,8 @@ const App: () => React$Node = () => {
                     customizations: ['auth_picker', 'theme', 'logo'],
                     tosUrl: 'https://example.com/tos.htm',
                     privacyPolicyUrl: 'https://example.com/privacypolicy.htm',
-                    allowNewAccounts: true,
-                    requireName: true,
+                    allowNewEmailAccounts: true,
+                    requireDisplayName: true,
                   };
                   Auth.signIn(config)
                     .then(user => console.log(user))
