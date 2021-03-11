@@ -174,7 +174,7 @@ The values available for android customization are as follows,
 First add FirebaseUI in your build.gradle (:app),
 ```javascript
 dependencies {
-    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
+    implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
     ...
 ```
 
