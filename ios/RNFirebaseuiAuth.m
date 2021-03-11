@@ -55,8 +55,8 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)config
     NSMutableArray<id<FUIAuthProvider>> *providers = [[NSMutableArray alloc] init];
     NSArray<NSString *> *cfgProviders = [config objectForKey:@"providers"];
     NSArray<NSString *> *cfgCustomizations = [config objectForKey:@"customizations"];
-    BOOL allowNewEmailAccounts = [config valueForKey:@"allowNewEmailAccounts"];
-    BOOL requireDisplayName = [config valueForKey:@"requireDisplayName"];
+    BOOL allowNewEmailAccounts = [config valueForKey:@"allowNewEmailAccounts"] ? [[config valueForKey:@"allowNewEmailAccounts"] integerValue] : 1;
+    BOOL requireDisplayName = [config valueForKey:@"requireDisplayName"] ? [[config valueForKey:@"requireDisplayName"] integerValue] : 1;
 
     for (int i = 0; i < [cfgProviders count]; i++)
     {
