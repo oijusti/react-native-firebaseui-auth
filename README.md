@@ -245,7 +245,7 @@ If this is your first open source contribution, please take a look at this [guid
 
 ## Find this library useful?
 
-Give me a star ✭ if you like it!
+Please give me a star ✭ if you like it!
 
 ## License
 
