@@ -16,7 +16,7 @@ before_install:
   - cd ./example
   - yarn
   - cd ./ios
-  # - gem install cocoapods
+  - gem install cocoapods # this might be temporal
   - pod repo update # this might be temporal
   - cd ./example
   - mv ./gs ./GoogleService-Info.plist
