@@ -5468,10 +5468,9 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-native-firebaseui-auth@^1.2.1:
-  version "1.2.18"
-  resolved "https://registry.yarnpkg.com/react-native-firebaseui-auth/-/react-native-firebaseui-auth-1.2.18.tgz#954049c0046149c8baa5eecc94dd06fdf1f1cf05"
-  integrity sha512-bztam0ZxUnmTj/82cQmld5e4LCJeh8tJOqYJPknyvzY7h3M4WfISYLXu5qV2/b84pUn3dg+S1YjFUbkQ8aBMjA==
+"react-native-firebaseui-auth@git+https://github.com/oijusti/react-native-firebaseui-auth.git":
+  version "1.2.19"
+  resolved "git+https://github.com/oijusti/react-native-firebaseui-auth.git#1f534e2a3f65e5c0bc792902e785a832433be9e6"
 
 react-native@0.63.3:
   version "0.63.3"
