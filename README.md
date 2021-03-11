@@ -152,7 +152,7 @@ creationTimestamp |`number`| Stores the timestamp at which this account was crea
 lastSignInTimestamp |`number`| Stores the last signin timestamp as dictated by the server clock in milliseconds since epoch. |
 
 ### UI Customization
-Optionally, you can use the parameter `customizations` to change the look of the authentication screens. This does not apply to the actual sign-in buttons and their position. What you can change depends on the platform.
+Optionally, you can use the option `customizations` to change the look of the authentication screens. This does not apply to the actual sign-in buttons and their position. What you can change depends on the platform.
 
 <div align="left">
 <p float="left">
@@ -210,6 +210,16 @@ The values available for iOS customization correspond to specific screens and ar
   };
 ```
 Open your project in `XCode` and add the `.xib` file of the screen you want to customize. The .xib files are located in `./ios/custom-screens/` of this library. Let's say, you want to customize the `auth-picker` screen, add the file `FUICustomAuthPickerViewController.xib` and use the XCode tools to add it labels, images, change colors, and so on.
+
+### Email Password Settings
+You can control whether new users can sign in or not by using the option `allowNewEmailAccounts`. Also, if you do not want to require the user name during sign up you can set the option `requireDisplayName` to false.
+```javascript
+  const config = {
+    ...
+    allowNewEmailAccounts: false,
+    requireDisplayName: false,
+  };
+```
 
 ## Example Project
 
