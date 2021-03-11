@@ -186,6 +186,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 

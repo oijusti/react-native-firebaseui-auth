@@ -3,6 +3,8 @@ package com.oijusti.firebaseuiauth;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 
 import androidx.annotation.NonNull;
 
@@ -61,49 +63,79 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
   public void signIn(final ReadableMap config, final Promise promise) {
     signInPromise = promise;
     Activity currentActivity = getCurrentActivity();
-    ReadableArray optProviders = config.getArray("providers");
 
+    final ReadableArray cfgProviders = config.getArray("providers");
+    final ReadableArray cfgCustomizations = config.hasKey("customizations") ? config.getArray("customizations") : null;
     final String tosUrl = config.hasKey("tosUrl") ? config.getString("tosUrl") : null;
     final String privacyPolicyUrl = config.hasKey("privacyPolicyUrl") ? config.getString("privacyPolicyUrl") : null;
+    final boolean allowNewEmailAccounts = !config.hasKey("allowNewEmailAccounts") || config.getBoolean("allowNewEmailAccounts");
+    final boolean requireDisplayName = !config.hasKey("requireDisplayName") || config.getBoolean("requireDisplayName");
+
     final List<AuthUI.IdpConfig> providers = new ArrayList<>();
 
-    for (int i = 0; i < optProviders.size(); i++)
+    for (int i = 0; i < cfgProviders.size(); i++)
     {
-      if (optProviders.getString(i).equals("anonymous")) {
+      String provider = cfgProviders.getString(i);
+      if (provider.equals("anonymous")) {
         providers.add(new AuthUI.IdpConfig.AnonymousBuilder().build());
         break;
       }
-      if (optProviders.getString(i).equals("facebook")) {
+      if (provider.equals("facebook")) {
         providers.add(new AuthUI.IdpConfig.FacebookBuilder().build());
       }
-      else if (optProviders.getString(i).equals("google")) {
+      else if (provider.equals("google")) {
         providers.add(new AuthUI.IdpConfig.GoogleBuilder().build());
       }
-      else if (optProviders.getString(i).equals("email")) {
-        providers.add(new AuthUI.IdpConfig.EmailBuilder().build());
+      else if (provider.equals("email")) {
+        providers.add(new AuthUI.IdpConfig.EmailBuilder()
+                .setAllowNewAccounts(allowNewEmailAccounts)
+                .setRequireName(requireDisplayName)
+                .build());
       }
-      else if (optProviders.getString(i).equals("phone")) {
+      else if (provider.equals("phone")) {
         providers.add(new AuthUI.IdpConfig.PhoneBuilder().build());
       }
-      else if (optProviders.getString(i).equals("apple")) {
+      else if (provider.equals("apple")) {
         providers.add(new AuthUI.IdpConfig.AppleBuilder().build());
       }
-      else if (optProviders.getString(i).equals("yahoo")) {
+      else if (provider.equals("yahoo")) {
         providers.add(new AuthUI.IdpConfig.YahooBuilder().build());
       }
-      else if (optProviders.getString(i).equals("github")) {
+      else if (provider.equals("github")) {
         providers.add(new AuthUI.IdpConfig.GitHubBuilder().build());
       }
-      else if (optProviders.getString(i).equals("twitter")) {
+      else if (provider.equals("twitter")) {
         providers.add(new AuthUI.IdpConfig.TwitterBuilder().build());
       }
-      else if (optProviders.getString(i).equals("microsoft")) {
+      else if (provider.equals("microsoft")) {
         providers.add(new AuthUI.IdpConfig.MicrosoftBuilder().build());
       }
     }
+
+    AuthUI.SignInIntentBuilder builder = AuthUI.getInstance().createSignInIntentBuilder();
+    if (cfgCustomizations != null) {
+      try {
+        PackageManager pm = reactContext.getPackageManager();
+        String packageName = reactContext.getPackageName();
+        Resources resources = pm.getResourcesForApplication(packageName);
+
+        int loginTheme = resources.getIdentifier("AuthTheme", "style", packageName);
+        int loginLogo = resources.getIdentifier("auth_logo", "drawable", packageName);
+
+        for (int i = 0; i < cfgCustomizations.size(); i++) {
+          String customization = cfgCustomizations.getString(i);
+          if (customization.equals("theme")) {
+            builder.setTheme(loginTheme);
+          }
+          else if (customization.equals("logo")) {
+            builder.setLogo(loginLogo);
+          }
+        }
+      } catch (PackageManager.NameNotFoundException e) { }
+    }
+
     currentActivity.startActivityForResult(
-            AuthUI.getInstance()
-                    .createSignInIntentBuilder()
+            builder
                     .setAvailableProviders(providers)
                     .setTosAndPrivacyPolicyUrls(
                             tosUrl,

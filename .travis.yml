@@ -15,7 +15,10 @@ before_install:
   - brew install yarn
   - cd ./example
   - yarn
-  - cd ./ios/example
+  - cd ./ios
+  # - gem install cocoapods
+  - pod repo update # this might be temporal
+  - cd ./example
   - mv ./gs ./GoogleService-Info.plist
   - cd ..
 script: set -o pipefail && xcodebuild -workspace example.xcworkspace -scheme example -destination "platform=iOS Simulator,OS=14.0,name=iPhone 11" -configuration Debug | xcpretty
