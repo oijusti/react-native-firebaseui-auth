@@ -18,6 +18,8 @@ declare namespace RNFirebaseuiAuth {
     customizations?: string[];
     tosUrl?: string;
     privacyPolicyUrl?: string;
+    allowNewEmailAccounts?: boolean;
+    requireDisplayName?: boolean;
   }
 
   export function signIn(config: Config): Promise<User>;
