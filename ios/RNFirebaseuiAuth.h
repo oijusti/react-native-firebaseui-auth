@@ -6,13 +6,13 @@
 #endif
 
 #import <FirebaseUI/FirebaseUI.h>
-#import <FirebaseUI/FirebaseAuthUI.h>
-#import <FirebaseUI/FirebaseGoogleAuthUI.h>
-#import <FirebaseUI/FirebaseFacebookAuthUI.h>
-#import <FirebaseUI/FirebaseEmailAuthUI.h>
-#import <FirebaseUI/FirebaseOAuthUI.h>
-#import <FirebaseUI/FirebasePhoneAuthUI.h>
-#import <FirebaseUI/FirebaseAnonymousAuthUI.h>
+#import <FirebaseAuthUI/FirebaseAuthUI.h>
+#import <FirebaseGoogleAuthUI/FirebaseGoogleAuthUI.h>
+#import <FirebaseFacebookAuthUI/FirebaseFacebookAuthUI.h>
+#import <FirebaseEmailAuthUI/FirebaseEmailAuthUI.h>
+#import <FirebaseOAuthUI/FirebaseOAuthUI.h>
+#import <FirebasePhoneAuthUI/FirebasePhoneAuthUI.h>
+#import <FirebaseAnonymousAuthUI/FirebaseAnonymousAuthUI.h>
 
 #import "FUICustomAuthPickerViewController.h"
 #import "FUICustomEmailEntryViewController.h"
