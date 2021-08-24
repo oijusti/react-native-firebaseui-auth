@@ -16,7 +16,6 @@
 //  limitations under the License.
 //
 
-
 #import "FUICustomPasswordSignUpViewController.h"
 
 @interface FUICustomPasswordSignUpViewController ()
