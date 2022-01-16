@@ -5,16 +5,16 @@ platform :ios, '11.0'
 
 target 'example' do
   # Add the Firebase pod for Google Analytics
-  # pod 'Firebase/Analytics'
+  pod 'Firebase/Analytics', '~>8.6.0'
   # Add pods for any other desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
-  # pod 'FirebaseUI'
-  pod 'FirebaseUI/Auth'
+  pod 'FirebaseUI'
+  # pod 'FirebaseUI/Auth'
   # pod 'FirebaseUI/Google'
   # pod 'FirebaseUI/Facebook'
   # pod 'FirebaseUI/OAuth' # Used for Sign in with Apple, Twitter, etc
-  pod 'FirebaseUI/Phone'
-  # pod 'FBSDKCoreKit', :modular_headers => true
+  # pod 'FirebaseUI/Phone'
+  pod 'FBSDKCoreKit', :modular_headers => true
 
   config = use_native_modules!
 
