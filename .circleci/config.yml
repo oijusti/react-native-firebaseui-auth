@@ -49,7 +49,7 @@ jobs:
   android:
     working_directory: ~/react-native-firebaseui-auth/example/android
     docker:
-      - image: circleci/android:api-28-node8-alpha
+      - image: circleci/android:api-30-node
     steps:
       - checkout:
           path: ~/react-native-firebaseui-auth
