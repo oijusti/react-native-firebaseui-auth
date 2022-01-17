@@ -5218,8 +5218,8 @@ react-native-codegen@^0.0.7:
     nullthrows "^1.1.1"
 
 "react-native-firebaseui-auth@git+https://github.com/oijusti/react-native-firebaseui-auth.git":
-  version "1.3.0"
-  resolved "git+https://github.com/oijusti/react-native-firebaseui-auth.git#2ade7300039146e65d4461a7a33ec464559596dd"
+  version "1.3.44"
+  resolved "git+https://github.com/oijusti/react-native-firebaseui-auth.git#bc0bbfb21f3272aeaff915a43c7f25c01d7f3bd6"
 
 react-native@0.66.4:
   version "0.66.4"
