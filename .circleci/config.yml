@@ -7,11 +7,11 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          key: yarn-v1-{{ checksum "example/yarn.lock" }}-{{ arch }}
+      # - restore_cache:
+      #     key: yarn-v1-{{ checksum "example/yarn.lock" }}-{{ arch }}
 
-      - restore_cache:
-          key: node-v1-{{ checksum "example/package.json" }}-{{ arch }}
+      # - restore_cache:
+      #     key: node-v1-{{ checksum "example/package.json" }}-{{ arch }}
 
       - run:
           name: install dependences
@@ -49,7 +49,7 @@ jobs:
   android:
     working_directory: ~/react-native-firebaseui-auth/example/android
     docker:
-      - image: circleci/android:api-28-node8-alpha
+      - image: circleci/android:api-30-node
     steps:
       - checkout:
           path: ~/react-native-firebaseui-auth
