@@ -27,8 +27,8 @@ Easily add sign-in to your React Native app with FirebaseUI
 
 <div align="left">
 <p float="left">
-<img src="https://raw.githubusercontent.com/oijusti/react-native-firebaseui-auth/HEAD/docs/assets/firebaseui-android.png" width="150"/>
-<img src="https://raw.githubusercontent.com/oijusti/react-native-firebaseui-auth/HEAD/docs/assets/firebaseui-ios.png" width="150"/>
+<img src="https://raw.githubusercontent.com/oijusti/react-native-firebaseui-auth/HEAD/firebaseui-android.png" width="150"/>
+<img src="https://raw.githubusercontent.com/oijusti/react-native-firebaseui-auth/HEAD/firebaseui-ios.png" width="150"/>
 </p>
 </div>
 
@@ -156,8 +156,8 @@ Optionally, you can use the option `customizations` to change the look of the au
 
 <div align="left">
 <p float="left">
-<img src="https://raw.githubusercontent.com/oijusti/react-native-firebaseui-auth/HEAD/docs/assets/firebaseui-android-custom.png" height="300"/>
-<img src="https://raw.githubusercontent.com/oijusti/react-native-firebaseui-auth/HEAD/docs/assets/firebaseui-ios-custom.png" height="300"/>
+<img src="https://raw.githubusercontent.com/oijusti/react-native-firebaseui-auth/HEAD/firebaseui-android-custom.png" height="300"/>
+<img src="https://raw.githubusercontent.com/oijusti/react-native-firebaseui-auth/HEAD/firebaseui-ios-custom.png" height="300"/>
 
 
 ##### Android
