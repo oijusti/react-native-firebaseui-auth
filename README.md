@@ -97,7 +97,22 @@ RN <= 0.59 only
 ## Usage
 
 ```javascript
-import Auth from 'react-native-firebaseui-auth';
+import Auth, {AuthEventEmitter, AuthEvents} from 'react-native-firebaseui-auth';
+
+...
+
+  componentDidMount() {
+    this.eventListener = AuthEventEmitter.addListener(
+      AuthEvents.AUTH_STATE_CHANGED,
+      event => {
+        console.log('user:', event.user);
+      }
+    );
+  }
+
+  componentWillUnmount() {
+    this.eventListener.remove(); //Removes the listener
+  }
 
 ...
 
@@ -132,7 +147,7 @@ import Auth from 'react-native-firebaseui-auth';
 
 ...
 
-  Auth.delete().then(res => console.log(res));
+  Auth.deleteUser().then(res => console.log(res));
 
 ...
 ```

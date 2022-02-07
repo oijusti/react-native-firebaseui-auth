@@ -7,17 +7,21 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.facebook.react.bridge.ActivityEventListener;
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.BaseActivityEventListener;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,8 +36,9 @@ import java.util.List;
 import static android.app.Activity.RESULT_OK;
 
 public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
-  private final ReactApplicationContext reactContext;
   private static int RC_SIGN_IN = 100;
+  private final ReactApplicationContext reactContext;
+  private final String AUTH_STATE_CHANGED_EVENT = "AuthStateChanged";
   private Promise signInPromise;
   private boolean isNewUser = false;
 
@@ -52,6 +57,16 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     super(reactContext);
     this.reactContext = reactContext;
     reactContext.addActivityEventListener(mActivityEventListener);
+  }
+
+  @ReactMethod
+  public void addListener(String eventName) {
+    // Set up any upstream listeners or background tasks as necessary
+  }
+
+  @ReactMethod
+  public void removeListeners(Integer count) {
+    // Remove upstream listeners, stop unnecessary background tasks
   }
 
   @Override
@@ -161,6 +176,9 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
             .signOut(context)
             .addOnCompleteListener(new OnCompleteListener<Void>() {
               public void onComplete(@NonNull Task<Void> task) {
+                WritableMap params = Arguments.createMap();
+                params.putMap("user", null);
+                sendEvent(reactContext, AUTH_STATE_CHANGED_EVENT, params);
                 promise.resolve(true);
               }
             })
@@ -173,7 +191,7 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void delete(final Promise promise) {
+  public void deleteUser(final Promise promise) {
     Context context = getReactApplicationContext();
     AuthUI.getInstance()
             .delete(context)
@@ -202,6 +220,9 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
         if (resultCode == RESULT_OK) {
           isNewUser = response.isNewUser();
           FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+          WritableMap params = Arguments.createMap();
+          params.putMap("user", mapUser(user));
+          sendEvent(reactContext, AUTH_STATE_CHANGED_EVENT, params);
           signInPromise.resolve(mapUser(user));
         } else {
           signInPromise.reject(ERROR_FIREBASE, response.getError().getMessage(), response.getError());
@@ -209,6 +230,12 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
       }
     }
   };
+
+  private void sendEvent(ReactContext reactContext, String eventName, @Nullable WritableMap params) {
+    reactContext
+            .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+            .emit(eventName, params);
+  }
 
   private WritableMap mapUser(FirebaseUser user) {
     WritableMap resultData = new WritableNativeMap();
