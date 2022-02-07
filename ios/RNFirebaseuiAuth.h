@@ -5,6 +5,8 @@
 #import <React/RCTBridgeModule.h>
 #endif
 
+#import <React/RCTEventEmitter.h>
+
 #import <FirebaseUI/FirebaseUI.h>
 #import <FirebaseAuthUI/FirebaseAuthUI.h>
 #import <FirebaseGoogleAuthUI/FirebaseGoogleAuthUI.h>
@@ -21,7 +23,6 @@
 #import "FUICustomPasswordRecoveryViewController.h"
 #import "FUICustomPasswordVerificationViewController.h"
 
-@interface RNFirebaseuiAuth : NSObject <RCTBridgeModule, FUIAuthDelegate>
+@interface RNFirebaseuiAuth : RCTEventEmitter <RCTBridgeModule, FUIAuthDelegate>
 
 @end
-  
