@@ -114,7 +114,6 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     }
 
     AuthUI.SignInIntentBuilder builder = AuthUI.getInstance().createSignInIntentBuilder();
-
     if (cfgCustomizations != null) {
       try {
         PackageManager pm = reactContext.getPackageManager();
@@ -136,7 +135,7 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
       } catch (PackageManager.NameNotFoundException e) { }
     }
 
-    if (allowAutoUpgradeAnonymousUsers){
+    if (allowAutoUpgradeAnonymousUsers) {
       builder = builder.enableAnonymousUsersAutoUpgrade();
     }
 
