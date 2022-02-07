@@ -222,11 +222,11 @@ You can control whether new users can sign in or not by using the option `allowN
 ```
 
 ### Anonymous User upgrade Settings
-When an anonymous user signs in or signs up with a permanent account, the `allowAutoUpgradeAnonymousUsers` option allows you to link the existing account (anonymous) with permanent account. This way the user can continue with what they were doing before signing up. By default this option is disabled.
+When an anonymous user signs in or signs up with a permanent account, the `autoUpgradeAnonymousUsers` option allows you to link the existing account (anonymous) with permanent account. This way the user can continue with what they were doing before signing up. By default this option is disabled.
 ```javascript
   const config = {
     ...
-    allowAutoUpgradeAnonymousUsers: true,
+    autoUpgradeAnonymousUsers: true,
   };
 ```
 
