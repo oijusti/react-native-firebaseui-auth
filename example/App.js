@@ -121,7 +121,7 @@ const App: () => Node = () => {
             }}>
             <Button
               onPress={() => {
-                Auth.delete().then(res => console.log(res));
+                Auth.deleteUser().then(res => console.log(res));
               }}
               title="Delete"
             />
