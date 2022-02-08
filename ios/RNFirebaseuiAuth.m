@@ -75,6 +75,7 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)config
     NSArray<NSString *> *cfgCustomizations = [config objectForKey:@"customizations"];
     BOOL allowNewEmailAccounts = [config valueForKey:@"allowNewEmailAccounts"] ? [[config valueForKey:@"allowNewEmailAccounts"] integerValue] : 1;
     BOOL requireDisplayName = [config valueForKey:@"requireDisplayName"] ? [[config valueForKey:@"requireDisplayName"] integerValue] : 1;
+    BOOL autoUpgradeAnonymousUsers = [config valueForKey:@"autoUpgradeAnonymousUsers"] ? [[config valueForKey:@"autoUpgradeAnonymousUsers"] integerValue] : 0;
 
     for (int i = 0; i < [cfgProviders count]; i++)
     {
@@ -145,6 +146,7 @@ RCT_EXPORT_METHOD(signIn:(NSDictionary *)config
     self.authUI.providers = providers;
     self.authUI.TOSURL = [NSURL URLWithString:config[@"tosUrl"]];
     self.authUI.privacyPolicyURL = [NSURL URLWithString:config[@"privacyPolicyUrl"]];
+    self.authUI.autoUpgradeAnonymousUsers = autoUpgradeAnonymousUsers;
     
     UINavigationController *authViewController = [self.authUI authViewController];
     UIViewController *rootVC = UIApplication.sharedApplication.delegate.window.rootViewController;

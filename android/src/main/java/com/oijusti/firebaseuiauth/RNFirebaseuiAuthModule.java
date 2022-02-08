@@ -85,6 +85,7 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
     final String privacyPolicyUrl = config.hasKey("privacyPolicyUrl") ? config.getString("privacyPolicyUrl") : null;
     final boolean allowNewEmailAccounts = !config.hasKey("allowNewEmailAccounts") || config.getBoolean("allowNewEmailAccounts");
     final boolean requireDisplayName = !config.hasKey("requireDisplayName") || config.getBoolean("requireDisplayName");
+    final boolean autoUpgradeAnonymousUsers = config.hasKey("autoUpgradeAnonymousUsers") && config.getBoolean("autoUpgradeAnonymousUsers");
 
     final List<AuthUI.IdpConfig> providers = new ArrayList<>();
 
@@ -147,6 +148,10 @@ public class RNFirebaseuiAuthModule extends ReactContextBaseJavaModule {
           }
         }
       } catch (PackageManager.NameNotFoundException e) { }
+    }
+
+    if (autoUpgradeAnonymousUsers) {
+      builder.enableAnonymousUsersAutoUpgrade();
     }
 
     currentActivity.startActivityForResult(
