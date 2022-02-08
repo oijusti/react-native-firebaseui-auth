@@ -25,6 +25,7 @@ declare namespace RNFirebaseuiAuth {
     privacyPolicyUrl?: string;
     allowNewEmailAccounts?: boolean;
     requireDisplayName?: boolean;
+    autoUpgradeAnonymousUsers?: boolean;
   }
 
   export function signIn(config: Config): Promise<User>;
