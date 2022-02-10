@@ -45,7 +45,7 @@ repositories {
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
+    implementation 'com.firebaseui:firebase-ui-auth:8.0.0'
 
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:28.4.1')
