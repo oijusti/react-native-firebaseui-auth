@@ -2,11 +2,11 @@
  buildscript {
      repositories {
          google()
-         jcenter()
+         mavenCentral()
      }
 
      dependencies {
-         classpath 'com.android.tools.build:gradle:3.4.2'
+         classpath 'com.android.tools.build:gradle:3.4.3'
      }
  }
 
@@ -14,7 +14,7 @@
      repositories {
          google()
          mavenLocal()
-         jcenter()
+         mavenCentral()
          maven {
              // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
              url "$rootDir/../node_modules/react-native/android"
@@ -25,11 +25,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 29
+        minSdkVersion 21
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
     }
@@ -46,9 +46,10 @@ repositories {
 dependencies {
     implementation 'com.facebook.react:react-native:+'
     implementation 'com.firebaseui:firebase-ui-auth:8.0.0'
+    implementation 'com.google.android.gms:play-services-auth:20.6.0'
 
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:28.4.1')
+    implementation platform('com.google.firebase:firebase-bom:32.2.0')
 
     // Declare the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
