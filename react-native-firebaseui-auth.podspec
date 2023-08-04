@@ -14,4 +14,14 @@ Pod::Spec.new do |s|
   s.source                 = { :git => 'https://github.com/oijusti/react-native-firebaseui-auth.git', :tag => "v#{version}" }
   s.source_files           = 'ios/*.{h,m}'
   s.dependency 'React'
+  s.dependency 'FirebaseAnonymousAuthUI'
+  s.dependency 'FirebaseAuthUI'
+  s.dependency 'FirebaseDatabaseUI'
+  s.dependency 'FirebaseEmailAuthUI'
+  s.dependency 'FirebaseFacebookAuthUI'
+  s.dependency 'FirebaseFirestoreUI'
+  s.dependency 'FirebaseGoogleAuthUI'
+  s.dependency 'FirebaseOAuthUI'
+  s.dependency 'FirebasePhoneAuthUI'
+  s.dependency 'FirebaseStorageUI'
 end

@@ -3,7 +3,7 @@ jobs:
   node:
     working_directory: ~/react-native-firebaseui-auth
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:20.5.0
     steps:
       - checkout
 
@@ -47,12 +47,13 @@ jobs:
             - example/node_modules
 
   android:
-    working_directory: ~/react-native-firebaseui-auth/example/android
+    working_directory: ~/
     docker:
-      - image: circleci/android:api-30-node
+      - image: cimg/android:2023.07-node
     steps:
-      - checkout:
-          path: ~/react-native-firebaseui-auth
+      # - checkout:
+      #     path: ~/react-native-firebaseui-auth
+      - run: git clone -b "$CIRCLE_BRANCH" https://github.com/oijusti/react-native-firebaseui-auth.git
 
       - attach_workspace:
           at: ~/react-native-firebaseui-auth
@@ -74,13 +75,13 @@ jobs:
       #       bundle exec fastlane test
       #       mv fastlane/report.xml test-results/fastlane
 
-      - restore_cache:
-          key: jars-cache-{{ .Branch }}-{{ checksum "./build.gradle" }}-{{ checksum  "./app/build.gradle" }}
+      # - restore_cache:
+      #     key: jars-cache-{{ .Branch }}-{{ checksum "./build.gradle" }}-{{ checksum  "./app/build.gradle" }}
 
       - run:
           name: make gradlew executable
           command: |
-            echo 'export TERM=xterm' >> $BASH_ENV && sudo chmod +x gradlew
+            echo 'export TERM=xterm' >> $BASH_ENV && sudo chmod +x ~/react-native-firebaseui-auth/example/android/gradlew
 
       - run:
           name: accept all licenses on error
@@ -90,10 +91,11 @@ jobs:
       - run:
           name: build debug
           command: |
+            cd ~/react-native-firebaseui-auth/example/android
             cd app
             mv ./gs ./google-services.json
             cd ../..
-            npx jetify
+            # npx jetify
             cd android
             ./gradlew assembleDebug
 
