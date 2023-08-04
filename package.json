@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:oijusti/react-native-firebaseui-auth.git"
+    "url": "git@github.com:oijusti/react-native-firebaseui-auth.git#feature/upgrade-firebase-dependencies"
   },
   "bugs": {
     "url": "https://github.com/oijusti/react-native-firebaseui-auth/issues/"
