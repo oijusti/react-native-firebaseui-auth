@@ -8,13 +8,13 @@
 #import <React/RCTEventEmitter.h>
 
 #import <FirebaseUI/FirebaseUI.h>
+#import <FirebaseAnonymousAuthUI/FirebaseAnonymousAuthUI.h>
 #import <FirebaseAuthUI/FirebaseAuthUI.h>
-#import <FirebaseGoogleAuthUI/FirebaseGoogleAuthUI.h>
-#import <FirebaseFacebookAuthUI/FirebaseFacebookAuthUI.h>
 #import <FirebaseEmailAuthUI/FirebaseEmailAuthUI.h>
+#import <FirebaseFacebookAuthUI/FirebaseFacebookAuthUI.h>
+#import <FirebaseGoogleAuthUI/FirebaseGoogleAuthUI.h>
 #import <FirebaseOAuthUI/FirebaseOAuthUI.h>
 #import <FirebasePhoneAuthUI/FirebasePhoneAuthUI.h>
-#import <FirebaseAnonymousAuthUI/FirebaseAnonymousAuthUI.h>
 
 #import "FUICustomAuthPickerViewController.h"
 #import "FUICustomEmailEntryViewController.h"
