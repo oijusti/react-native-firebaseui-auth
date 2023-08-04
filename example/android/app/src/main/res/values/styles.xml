@@ -8,9 +8,9 @@
 
     <!-- Firebase UI Auth theme. -->
     <style name="AuthTheme" parent="FirebaseUI">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <!-- <item name="colorPrimary">@color/colorPrimary</item> -->
+        <!-- <item name="colorPrimaryDark">@color/colorPrimaryDark</item> -->
+        <!-- <item name="colorAccent">@color/colorAccent</item> -->
 
         <item name="colorControlNormal">@android:color/white</item>
         <item name="colorControlActivated">@android:color/white</item>

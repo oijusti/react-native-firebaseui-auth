@@ -196,9 +196,9 @@ dependencies {
 For `theme`, add the next style in your `styles.xml`, then copy into the `drawable` folder an image to use for background and name it `auth_background.png`.
 ```javascript
     <style name="AuthTheme" parent="FirebaseUI">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <!-- <item name="colorPrimary">@color/colorPrimary</item> -->
+        <!-- <item name="colorPrimaryDark">@color/colorPrimaryDark</item> -->
+        <!-- <item name="colorAccent">@color/colorAccent</item> -->
 
         <item name="colorControlNormal">@android:color/white</item>
         <item name="colorControlActivated">@android:color/white</item>
@@ -250,12 +250,12 @@ When an anonymous user signs in or signs up with a permanent account, the `autoU
 Create a project in the [Firebase Console](https://console.firebase.google.com) and add apps for Android and iOS. Then enable Email/Password provider in Authentication.
 
 #### Android
-Make sure you type `com.example.app` in the `Android package name` field.
+Make sure you type `com.example` in the `Android package name` field.
 
 Download the file `google-services.json` in the android/app folder.
 
 #### iOS
-Make sure you type `com.example.app` in the `iOS bundle ID` field.
+Make sure you type `com.example` in the `iOS bundle ID` field.
 
 Download the file ``GoogleService-Info.plist`` in the ios/example folder and add it into the project using xcode.
 

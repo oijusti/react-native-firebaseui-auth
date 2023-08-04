@@ -1,15 +1,14 @@
-/* eslint-disable react-native/no-inline-styles */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
  *
  * @format
- * @flow strict-local
  */
 
 import React from 'react';
-import type {Node} from 'react';
+import type {PropsWithChildren} from 'react';
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -17,7 +16,6 @@ import {
   Text,
   useColorScheme,
   View,
-  Button,
 } from 'react-native';
 
 import {
@@ -30,7 +28,11 @@ import {
 
 import Auth from 'react-native-firebaseui-auth';
 
-const Section = ({children, title}): Node => {
+type SectionProps = PropsWithChildren<{
+  title: string;
+}>;
+
+function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -54,9 +56,9 @@ const Section = ({children, title}): Node => {
       </Text>
     </View>
   );
-};
+}
 
-const App: () => Node = () => {
+function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -65,16 +67,24 @@ const App: () => Node = () => {
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <StatusBar
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        backgroundColor={backgroundStyle.backgroundColor}
+      />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
-        <View style={{alignItems: 'center'}}>
-          <Text style={{fontWeight: 'bold', fontSize: 24}}>
+        <View
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={{alignItems: 'center'}}>
+          <Text
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={{fontWeight: 'bold', fontSize: 24}}>
             Firebase UI Auth Example
           </Text>
           <View
+            // eslint-disable-next-line react-native/no-inline-styles
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -85,7 +95,7 @@ const App: () => Node = () => {
             <Button
               onPress={() => {
                 const config = {
-                  providers: ['email', 'phone'],
+                  providers: ['email'],
                   customizations: ['auth_picker', 'theme', 'logo'],
                   tosUrl: 'https://example.com/tos.htm',
                   privacyPolicyUrl: 'https://example.com/privacypolicy.htm',
@@ -133,7 +143,7 @@ const App: () => Node = () => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
+            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
           </Section>
           <Section title="See Your Changes">
@@ -150,7 +160,7 @@ const App: () => Node = () => {
       </ScrollView>
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   sectionContainer: {
