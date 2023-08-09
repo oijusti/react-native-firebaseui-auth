@@ -1,8 +1,6 @@
 
 [![oijusti](https://circleci.com/gh/oijusti/react-native-firebaseui-auth.svg?style=svg)](https://circleci.com/gh/oijusti/react-native-firebaseui-auth)
 
-[![Build Status](https://travis-ci.org/oijusti/react-native-firebaseui-auth.svg?branch=master)](https://travis-ci.org/oijusti/react-native-firebaseui-auth)
-
 [prs]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
 [prs-url]: https://github.com/oijusti/react-native-firebaseui-auth#contributing
 
