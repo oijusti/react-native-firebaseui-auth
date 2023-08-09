@@ -9,7 +9,7 @@
 [![npm version](https://badge.fury.io/js/react-native-firebaseui-auth.svg)](https://www.npmjs.com/package/react-native-firebaseui-auth) [![PR's welcome][prs]][prs-url]
 
 <a href="https://npmcharts.com/compare/react-native-firebaseui-auth?minimal=true">
-  <img  src="https://img.shields.io/npm/dt/react-native-firebaseui-auth?color=46c71f"/> 
+  <img  src="https://img.shields.io/npm/dy/react-native-firebaseui-auth?color=46c71f"/> 
 </a>
 
 <a href="https://npmcharts.com/compare/react-native-firebaseui-auth?minimal=true">
