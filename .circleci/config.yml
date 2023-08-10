@@ -105,8 +105,8 @@ jobs:
 
   ios:
     macos:
-      xcode: "9.0"
-    working_directory: ~/react-native-firebaseui-auth/example/ios
+      xcode: 14.2.0
+    working_directory: ~/react-native-firebaseui-auth/example
 
     # use a --login shell so our "set Ruby version" command gets picked up for later steps
     shell: /bin/bash --login -o pipefail
@@ -177,6 +177,6 @@ workflows:
       - android:
           requires:
             - node
-      # - ios:
-      #     requires:
-      #       - node
+      - ios:
+          requires:
+            - node
