@@ -15,6 +15,12 @@
 #import <FirebaseOAuthUI/FirebaseOAuthUI.h>
 #import <FirebasePhoneAuthUI/FirebasePhoneAuthUI.h>
 #import <FirebaseAnonymousAuthUI/FirebaseAnonymousAuthUI.h>
+#import <FirebaseAuth/FIRAdditionalUserInfo.h>
+#import <FirebaseAuth/FIREmailAuthProvider.h>
+#import <FirebaseAuth/FIRActionCodeSettings.h>
+#import <FirebaseAuth/FIRAuth.h>
+#import <FirebaseAuth/FIRUser.h>
+#import <FirebaseAuth/FIRUserMetadata.h>
 
 #import "FUICustomAuthPickerViewController.h"
 #import "FUICustomEmailEntryViewController.h"
