@@ -244,6 +244,7 @@ When an anonymous user signs in or signs up with a permanent account, the `autoU
 ```
 
 ## Example Project
+Download example from [react-native-firebaseui-auth-example](https://github.com/oijusti/react-native-firebaseui-auth-example)
 
 Create a project in the [Firebase Console](https://console.firebase.google.com) and add apps for Android and iOS. Then enable Email/Password provider in Authentication.
 
