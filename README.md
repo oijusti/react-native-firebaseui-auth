@@ -1,15 +1,13 @@
 
 [![oijusti](https://circleci.com/gh/oijusti/react-native-firebaseui-auth.svg?style=svg)](https://circleci.com/gh/oijusti/react-native-firebaseui-auth)
 
-[![Build Status](https://travis-ci.org/oijusti/react-native-firebaseui-auth.svg?branch=master)](https://travis-ci.org/oijusti/react-native-firebaseui-auth)
-
 [prs]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
 [prs-url]: https://github.com/oijusti/react-native-firebaseui-auth#contributing
 
 [![npm version](https://badge.fury.io/js/react-native-firebaseui-auth.svg)](https://www.npmjs.com/package/react-native-firebaseui-auth) [![PR's welcome][prs]][prs-url]
 
 <a href="https://npmcharts.com/compare/react-native-firebaseui-auth?minimal=true">
-  <img  src="https://img.shields.io/npm/dt/react-native-firebaseui-auth?color=46c71f"/> 
+  <img  src="https://img.shields.io/npm/dy/react-native-firebaseui-auth?color=46c71f"/> 
 </a>
 
 <a href="https://npmcharts.com/compare/react-native-firebaseui-auth?minimal=true">
@@ -246,6 +244,7 @@ When an anonymous user signs in or signs up with a permanent account, the `autoU
 ```
 
 ## Example Project
+Download example from [react-native-firebaseui-auth-example](https://github.com/oijusti/react-native-firebaseui-auth-example)
 
 Create a project in the [Firebase Console](https://console.firebase.google.com) and add apps for Android and iOS. Then enable Email/Password provider in Authentication.
 
